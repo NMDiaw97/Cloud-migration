@@ -1,0 +1,34 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {Criteria} from 'src/app/class/criteria';
+@Injectable({
+  providedIn: 'root'
+})
+export class CriteriaStoreService {
+
+  apiUrl = 'http://faas-cloud-orientation.mouhammad.ml';
+
+  constructor(
+    private http: HttpClient) { }
+
+    getCriterion(): Promise<Criteria[]> {
+      return this.http.get<Criteria[]>(`${this.apiUrl}/criteres`).toPromise();
+    }
+
+    detailCriteria(criteriaName: string): Promise<Criteria> {
+      return this.http.get<Criteria>(`${this.apiUrl}/criteres/${criteriaName}`).toPromise();
+    }
+
+    setCriteria(newCriteria: Criteria): Promise<Criteria> {
+      return this.http.post<Criteria>(`${this.apiUrl}/criteres`, newCriteria).toPromise();
+    }
+
+    updateCriteria(updatedCriteria: Criteria): Promise<Criteria> {
+      return this.http.put<Criteria>(`${this.apiUrl}/criteres/${updatedCriteria.name}`, updatedCriteria).toPromise();
+    }
+
+    deleteCriteria(criteriaName: string): Promise<string> {
+      return this.http.delete<string>(`${this.apiUrl}/criteres/${criteriaName}`).toPromise();
+    }
+}
