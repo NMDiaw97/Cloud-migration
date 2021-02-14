@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('sidenav', { static: true }) public sidenav!: MatSidenav;
+
+  constructor(
+    private sidenavService: SidenavService
+  ) { }
 
   ngOnInit(): void {
+    this.sidenavService.setSidenav(this.sidenav);
+    this.sidenavService.sideNavToggleSubject.subscribe(() => {
+      this.sidenav.toggle();
+    });
   }
 
 }

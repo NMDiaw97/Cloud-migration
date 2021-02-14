@@ -11,9 +11,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 import {MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { SidenavService } from './services/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule,
   ],
-  providers: [],
+  providers: [SidenavService, MatSidenav],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
