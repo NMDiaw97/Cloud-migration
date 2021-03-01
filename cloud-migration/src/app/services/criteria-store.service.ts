@@ -7,13 +7,14 @@ import {Criteria} from 'src/app/class/criteria';
 })
 export class CriteriaStoreService {
 
-  apiUrl = 'http://faas-cloud-orientation.mouhammad.ml';
+// apiUrl = 'http://faas-cloud-orientation.mouhammad.ml';
+  apiUrl = 'http://localhost:8085';
 
   constructor(
     private http: HttpClient) { }
 
-    getCriterion(): Promise<Criteria[]> {
-      return this.http.get<Criteria[]>(`${this.apiUrl}/criteres`).toPromise();
+    getCriteria(): Promise<any> {
+      return this.http.get<any>(`${this.apiUrl}/criteres`).toPromise();
     }
 
     detailCriteria(criteriaName: string): Promise<Criteria> {
