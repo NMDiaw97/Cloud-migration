@@ -9,9 +9,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatProgressBarModule} from '@angular/material/progress-bar'
 import {MatIconModule} from '@angular/material/icon';
 import { RegisterComponent } from './register/register.component';
 import {LoginComponent} from './login/login.component'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthService } from './auth.service';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -32,10 +36,13 @@ import {LoginComponent} from './login/login.component'
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatProgressBarModule,
+    MatIconModule,
+    HttpClientModule,
+    FormsModule
   
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
