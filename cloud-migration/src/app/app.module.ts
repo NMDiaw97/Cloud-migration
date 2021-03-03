@@ -16,6 +16,8 @@ import {LoginComponent} from './login/login.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthService } from './auth.service';
 import {FormsModule} from '@angular/forms';
+import { CloudCriteriaManagementComponent } from './cloud-criteria-management/cloud-criteria-management.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -25,7 +27,8 @@ import {FormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CloudCriteriaManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import {FormsModule} from '@angular/forms';
     MatProgressBarModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   
   ],
   providers: [AuthService],

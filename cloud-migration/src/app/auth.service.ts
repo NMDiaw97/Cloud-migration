@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {User} from './models/user.model'
-import { Observable } from 'rxjs';
+import { Observable,throwError } from 'rxjs';
+import {catchError} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,15 @@ export class AuthService {
   }
   loginUser(user:User):Observable<any>{
     return this.http.post<any>(`${this.apiUrl}/login`,user)
+    .pipe(catchError(this.errorHandler))
 
+  }
+
+  errorHandler(error:HttpErrorResponse){
+    return throwError(error);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token')
   }
 }

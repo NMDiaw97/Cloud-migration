@@ -22,7 +22,11 @@ export class RegisterComponent implements OnInit {
   registerUser(){
    this.auth.registerUser(this.user).subscribe(
      data => {console.log(data)
-      this.showBar = true}
+      this.showBar = true
+      this.route.navigate(['/login'])
+    }
+
+      
    )
   }
   goToLoginPage(){

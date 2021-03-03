@@ -2,19 +2,23 @@
     <mat-card class="example-card">
         <mat-card-header>
           <mat-card-title class="title">Login Form</mat-card-title>
+          <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
         </mat-card-header>
         <mat-card-content>
-            <form class="example-form">
+            <form class="example-form" #userform="ngForm" (ngSubmit)="loginUser()">
+        
                 <mat-form-field class="example-full-width">
                   <mat-label>Username</mat-label>
-                  <input [(ngModel)]="user.username" name="username" matInput placeholder="ndeye@gmail.com">
+                  <input type="text" required
+                  [(ngModel)]="user.username"  name="username" matInput placeholder="ndeye@gmail.com">
+                 
                 </mat-form-field>
     
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input [(ngModel)]="user.password" name="password" matInput placeholder="password" type="password">
+                    <input  [(ngModel)]="user.password" name="password" matInput placeholder="password" type="password" required>
                   </mat-form-field>
-                  <button (click)= "loginUser()" mat-raised-button color="primary">Submit</button>
+                  <button [disabled]="userform.form.invalid" mat-raised-button color="primary">Submit</button>
 
               
               </form>
