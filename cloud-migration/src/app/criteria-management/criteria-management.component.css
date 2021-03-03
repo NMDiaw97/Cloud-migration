@@ -95,3 +95,7 @@ input.example-right-align {
 .field{
   margin-right: 38px;
 }
+
+.green-icon {
+  color: green;
+}

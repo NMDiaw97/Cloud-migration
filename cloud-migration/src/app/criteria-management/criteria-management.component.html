@@ -117,7 +117,6 @@
             <input matInput placeholder="Rate" type="number" formControlName="vhrate" required min="81" max="100"/>
           </mat-form-field>
         </form>
-        <mat-divider></mat-divider>
         <div>
           <button mat-raised-button color="primary" (click)="submit()">Submit</button>
           <button mat-raised-button *ngIf="boolCreate" color="warn" (click)="reset(formGroup)">Reset</button>
@@ -141,8 +140,24 @@
         <h3 matLine>{{detailCriterion.name}}</h3>
       </mat-list-item>
       <mat-list-item>
-        <mat-icon matListIcon color="primary">flag</mat-icon>
-        <h3 matLine>{{detailCriterion.name}}</h3>
+        <mat-icon matListIcon style="transform: rotate(180deg)" class="green-icon">arrow_downward</mat-icon>
+        <h3 matLine>Very High Rate &nbsp; {{detailCriterion.vhrate}}</h3>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon style="transform: rotate(135deg)" color="primary">arrow_downward</mat-icon>
+        <h3 matLine>High Rate &nbsp; {{detailCriterion.hrate}}</h3>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon style="transform: rotate(90deg)" color="primary">arrow_downward</mat-icon>
+        <h3 matLine>Meduim Rate &nbsp; {{detailCriterion.mrate}}</h3>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon style="transform: rotate(45deg)" color="primary">arrow_downward</mat-icon>
+        <h3 matLine>Low Rate &nbsp; {{detailCriterion.lrate}}</h3>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon color="warn">arrow_downward</mat-icon>
+        <h3 matLine>Very Low Rate &nbsp; {{detailCriterion.vlrate}}</h3>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>
