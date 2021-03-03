@@ -13,7 +13,7 @@ section{
 
 .example-button-row {
   display: table-cell;
-  width: 18%;
+  width: 10%;
 }
 
 .example-flex-container {
@@ -44,10 +44,12 @@ table {
   width: 100%;
   padding: 20px;
 }
-
+/*
 td, th {
-/*  width: 25%;*/
+  width: 25%;
 }
+ */
+
 
 .add {
   margin: 20px;
@@ -71,4 +73,25 @@ td, th {
 .create{
   padding-left: 20%;
   padding-right: 20%;
+}
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.example-right-align {
+  text-align: center;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.field{
+  margin-right: 38px;
 }

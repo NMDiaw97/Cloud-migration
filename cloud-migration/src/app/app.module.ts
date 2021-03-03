@@ -24,6 +24,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,10 +37,14 @@ import { MatSortModule } from '@angular/material/sort';
     DashboardComponent,
     SidebarComponent,
     ToolbarComponent,
-    CriteriaComponent
+    CriteriaComponent,
+    ConfirmationDialogComponent,
+    DetailCriterionComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -49,7 +59,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatExpansionModule,
+    MatSliderModule,
+    MatDialogModule
   ],
   providers: [SidenavService, MatSidenav],
   bootstrap: [AppComponent]
