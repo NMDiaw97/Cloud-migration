@@ -30,6 +30,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
+import { PricingManagementComponent } from './pricing-management/pricing-management.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { DetailCriterionComponent } from './criteria-management/detail-criterion
     ToolbarComponent,
     CriteriaComponent,
     ConfirmationDialogComponent,
-    DetailCriterionComponent
+    DetailCriterionComponent,
+    PricingManagementComponent
   ],
   imports: [
     BrowserModule,

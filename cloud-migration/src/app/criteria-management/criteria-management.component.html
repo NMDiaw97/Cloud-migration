@@ -63,7 +63,9 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
         <td mat-cell *matCellDef="let row">
           <button mat-mini-fab color="link" ><mat-icon (click)=" edit(row)">edit</mat-icon></button>
+          <!--
           <button mat-mini-fab color="primary" (click)="detail(row)"><mat-icon>visibility</mat-icon></button>
+          -->
           <button mat-mini-fab color="warn" (click)="delete(row.name)"><mat-icon>delete</mat-icon></button>
 
         </td>
@@ -88,7 +90,6 @@
         {{formTitle}}
       </mat-panel-title>
       <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
       </mat-panel-description>
     </mat-expansion-panel-header>
         <form [formGroup]="formGroup" class="field">
@@ -124,6 +125,7 @@
   </mat-expansion-panel>
 </section>
 <mat-divider></mat-divider>
+<!--
 <section>
   <mat-expansion-panel [expanded]="panelOpenStateDetail">
     <mat-expansion-panel-header>
@@ -162,3 +164,4 @@
     </mat-list>
   </mat-expansion-panel>
 </section>
+-->

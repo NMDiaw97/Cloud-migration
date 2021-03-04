@@ -30,9 +30,7 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Criteria>();
   formGroup!: FormGroup;
 
-  // tslint:disable-next-line:no-non-null-assertion
-  slideSubject = new BehaviorSubject<number>(0!);
-  readonly slideValue$ = this.slideSubject.asObservable();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -85,11 +83,6 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
     });
   }
 
-  updateSliderValue(event: MatSliderChange): void{
-    // tslint:disable-next-line:no-non-null-assertion
-    this.slideSubject.next(event.value!);
-    console.log(this.myValue);
-}
   edit(row: any): void {
     this.panelOpenState = true;
     this.formTitle = 'Update Criterion ';
