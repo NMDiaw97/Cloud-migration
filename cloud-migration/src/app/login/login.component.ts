@@ -20,14 +20,12 @@ export class LoginComponent implements OnInit {
   loginUser(){
     this.auth.loginUser(this.user).subscribe(
       data => {
-        console.log(data.token)
+        console.log(data)
         localStorage.setItem('token',data.token);
         this.router.navigate(['/cloud-criteria-manager'])
 
       },
-      error=>{
-        this.errorMsg="il faut d'abord s'inscrire"
-      }
+     
       
       
        

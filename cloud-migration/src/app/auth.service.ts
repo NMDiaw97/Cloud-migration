@@ -17,14 +17,12 @@ export class AuthService {
 
   }
   loginUser(user:User):Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/login`,user)
-    .pipe(catchError(this.errorHandler))
+    return this.http.post<any>(`${this.apiUrl}/login`,user, {observe: "response"})
+
 
   }
 
-  errorHandler(error:HttpErrorResponse){
-    return throwError(error);
-  }
+  
 
   loggedIn(){
     return !!localStorage.getItem('token')

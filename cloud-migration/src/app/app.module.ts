@@ -6,11 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar'
-import {MatIconModule} from '@angular/material/icon';
 import { RegisterComponent } from './register/register.component';
 import {LoginComponent} from './login/login.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -18,6 +17,15 @@ import { AuthService } from './auth.service';
 import {FormsModule} from '@angular/forms';
 import { CloudCriteriaManagementComponent } from './cloud-criteria-management/cloud-criteria-management.component';
 import {MatTableModule} from '@angular/material/table';
+import { AuthGuard } from './auth.guard';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+
 
 
 
@@ -28,7 +36,11 @@ import {MatTableModule} from '@angular/material/table';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    CloudCriteriaManagementComponent
+    CloudCriteriaManagementComponent,
+    SidebarComponent,
+    ToolbarComponent
+  
+    
   ],
   imports: [
     BrowserModule,
@@ -43,10 +55,17 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatDividerModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    
+
   
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
