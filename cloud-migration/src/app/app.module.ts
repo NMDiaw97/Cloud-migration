@@ -14,10 +14,13 @@ import {MatIconModule} from '@angular/material/icon';
 import { RegisterComponent } from './register/register.component';
 import {LoginComponent} from './login/login.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import {FormsModule} from '@angular/forms';
 import { CloudCriteriaManagementComponent } from './cloud-criteria-management/cloud-criteria-management.component';
 import {MatTableModule} from '@angular/material/table';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -28,7 +31,8 @@ import {MatTableModule} from '@angular/material/table';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    CloudCriteriaManagementComponent
+    CloudCriteriaManagementComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +47,11 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   
   ],
-  providers: [AuthService],
+  providers: [AuthService, ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
