@@ -22,13 +22,13 @@ const routes: Routes = [
   {
     path: 'pricing-management',
     component: PricingManagementComponent
-  }
+  },
   {
     path: '',
     component: SidebarComponent
   },
-   
-]
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

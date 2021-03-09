@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthService } from './auth.service';
-import {FormsModule} from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RegisterComponent } from './register/register.component';
@@ -34,6 +33,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatDialogModule } from '@angular/material/dialog';
+import { CriteriaComponent } from './criteria-management/criteria/criteria.component';
+import {MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +72,8 @@ import {MatDialogModule } from '@angular/material/dialog';
     MatSortModule,
     MatExpansionModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
