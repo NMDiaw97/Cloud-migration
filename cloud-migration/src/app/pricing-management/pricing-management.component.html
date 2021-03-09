@@ -90,7 +90,7 @@
         <form [formGroup]="formGroup" class="field">
           <mat-form-field>
             <mat-label>Category</mat-label>
-            <input matInput placeholder="Category" formControlName="category" required [readonly]="status" />
+            <input matInput placeholder="Category" formControlName="category" required [readonly]="status"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label>CPU</mat-label>
@@ -110,7 +110,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Provider</mat-label>
-            <input matInput placeholder="provider" type="text" formControlName="provider" required/>
+            <input matInput placeholder="provider" type="text" formControlName="provider" required [readonly]="status"/>
           </mat-form-field>
         </form>
         <div>

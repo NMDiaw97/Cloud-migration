@@ -7,7 +7,7 @@ import {Criteria} from 'src/app/class/criteria';
 })
 export class CriteriaStoreService {
 
-apiUrl = environment.apiUrl;
+  apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient) { }

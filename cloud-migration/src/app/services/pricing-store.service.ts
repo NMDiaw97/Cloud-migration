@@ -30,6 +30,6 @@ apiUrl = environment.apiUrl;
   }
 
   updatePricing(pricing: Pricing): Promise<Pricing> {
-    return this.http.get<Pricing>(`${this.apiUrl}/providers/pricing/${pricing.provider}/${pricing.category}`).toPromise();
+    return this.http.put<Pricing>(`${this.apiUrl}/providers/pricing/${pricing.provider}/${pricing.category}`, pricing).toPromise();
   }
 }

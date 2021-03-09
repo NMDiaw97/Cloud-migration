@@ -24,7 +24,6 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
   detailCriterion = new Criteria();
   status = false;
   formTitle = '';
-  myValue: number | undefined;
   pageTitle: string | undefined;
   displayedColumns = ['name', 'vlrate', 'lrate', 'mrate', 'hrate', 'vhrate', 'action'];
   dataSource = new MatTableDataSource<Criteria>();
@@ -105,7 +104,6 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
     this.detailCriterion.hrate = row.hrate;
     this.detailCriterion.vhrate = row.vhrate;
     this.panelOpenStateDetail = true;
-    console.log(this.detailCriterion);
   }
 
   delete(name: string): void {

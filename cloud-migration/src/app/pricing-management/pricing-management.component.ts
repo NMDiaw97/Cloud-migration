@@ -75,7 +75,19 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
    });
   }
 
-  edit(row: any): void {}
+  edit(row: Pricing): void {
+    this.panelOpenState = true;
+    this.formTitle = 'Update Criterion';
+    this.formGroup.controls.category.setValue(row.category);
+    this.formGroup.controls.provider.setValue(row.provider);
+    this.formGroup.controls.cpu.setValue(row.cpu);
+    this.formGroup.controls.ram.setValue(row.ram);
+    this.formGroup.controls.pricePerHour.setValue(row.pricePerHour);
+    this.formGroup.controls.pricePerMonth.setValue(row.pricePerMonth);
+    this.status = true;
+    this.boolCreate = false;
+  }
+
   delete(provider: string, category: string): void {
     this.deletePricingConfirmation(provider, category);
   }
@@ -93,6 +105,9 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
     pricing.provider = this.f.provider.value;
     if (this.boolCreate) {
       this.createPricingConfirmation(pricing);
+    } else {
+      console.log('pricing ', pricing);
+      this.updatePricingConfirmation(pricing);
     }
   }
 
@@ -138,6 +153,26 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
           console.log(data);
         })
         .catch( e => {
+          console.log(e);
+        });
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  updatePricingConfirmation(pricing: Pricing): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '200px',
+      data: {
+        message: 'Confirm tu update this criterion !'
+      }
+    });
+    dialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        this.pricingService.updatePricing(pricing).then( data => {
+          console.log(data);
+        })
+        .catch(e => {
           console.log(e);
         });
         this.router.navigate(['']);
