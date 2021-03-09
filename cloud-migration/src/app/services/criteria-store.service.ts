@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 import {Criteria} from 'src/app/class/criteria';
 @Injectable({
   providedIn: 'root'
 })
 export class CriteriaStoreService {
 
-// apiUrl = 'http://faas-cloud-orientation.mouhammad.ml';
-  apiUrl = 'http://localhost:8085';
+  apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient) { }
