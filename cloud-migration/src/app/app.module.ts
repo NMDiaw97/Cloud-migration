@@ -31,6 +31,7 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
 import { PricingManagementComponent } from './pricing-management/pricing-management.component';
+import { RulesManagementComponent } from './rules-management/rules-management.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { PricingManagementComponent } from './pricing-management/pricing-managem
     CriteriaComponent,
     ConfirmationDialogComponent,
     DetailCriterionComponent,
-    PricingManagementComponent
+    PricingManagementComponent,
+    RulesManagementComponent
   ],
   imports: [
     BrowserModule,
