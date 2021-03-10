@@ -62,14 +62,15 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-    submit(): void {
-      if (this.formGroup.invalid) {
-        return;
-      }
-      const userData = new User();
-      userData.username = this.f.username.value;
-      userData.password = this.f.password.value ;
-      this.registerConfirmation(userData);
+  
+  submit(): void {
+    if (this.formGroup.invalid) {
+      return;
     }
+    const userData = new User();
+    userData.username = this.f.username.value;
+    userData.password = this.f.password.value ;
+    this.registerConfirmation(userData);
+  }
 
 }

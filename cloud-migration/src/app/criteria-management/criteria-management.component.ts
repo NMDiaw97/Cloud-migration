@@ -4,8 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Criteria } from '../class/criteria';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import {MatSliderChange} from '@angular/material/slider';
-import {BehaviorSubject} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
