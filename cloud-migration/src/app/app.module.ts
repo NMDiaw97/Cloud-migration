@@ -32,6 +32,8 @@ import { ConfirmationDialogComponent } from './criteria-management/confirmation-
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
 import { PricingManagementComponent } from './pricing-management/pricing-management.component';
 import { RulesManagementComponent } from './rules-management/rules-management.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,9 @@ import { RulesManagementComponent } from './rules-management/rules-management.co
     ConfirmationDialogComponent,
     DetailCriterionComponent,
     PricingManagementComponent,
-    RulesManagementComponent
+    RulesManagementComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

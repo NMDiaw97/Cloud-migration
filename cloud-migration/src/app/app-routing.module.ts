@@ -4,8 +4,25 @@ import { CriteriaManagementComponent } from './criteria-management/criteria-mana
 import { PricingManagementComponent } from './pricing-management/pricing-management.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RulesManagementComponent } from './rules-management/rules-management.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './security/auth.guard';
 const routes: Routes = [
-  { path: 'criteria-management', component: CriteriaManagementComponent},
+
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+
+  },
+  {
+    path: 'criteria-management',
+    component: CriteriaManagementComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: '',
     redirectTo: '',
