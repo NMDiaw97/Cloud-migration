@@ -1,0 +1,14 @@
+<form [formGroup]="formGroup" class="field">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="UserName" formControlName="username" required  />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Rate" type="password" formControlName="password" required/>
+  </mat-form-field>
+</form>
+<div>
+  <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+  <button mat-raised-button color="warn" (click)="reset(formGroup)">Reset</button>
+</div>
