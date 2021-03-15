@@ -25,31 +25,31 @@
       <!-- Very Low RateColumn -->
       <ng-container matColumnDef="vlrate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Very Low Rate </th>
-        <td mat-cell *matCellDef="let row"> {{row.vlrate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.vlrate}}<span matPrefix>/100</span> </td>
       </ng-container>
 
       <!-- Low Rate Column -->
       <ng-container matColumnDef="lrate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Low Rate</th>
-        <td mat-cell *matCellDef="let row"> {{row.lrate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.lrate}}<span matPrefix>/100</span> </td>
       </ng-container>
 
       <!-- Moderate RateColumn -->
       <ng-container matColumnDef="mrate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Meduim Rate </th>
-        <td mat-cell *matCellDef="let row"> {{row.mrate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.mrate}}<span matPrefix>/100</span> </td>
       </ng-container>
 
       <!--Hight Rate Column -->
       <ng-container matColumnDef="hrate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> High Rate </th>
-        <td mat-cell *matCellDef="let row"> {{row.hrate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.hrate}}<span matPrefix>/100</span> </td>
       </ng-container>
 
       <!-- Very High Rate Column -->
       <ng-container matColumnDef="vhrate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Very High Rate </th>
-        <td mat-cell *matCellDef="let row"> {{row.vhrate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.vhrate}}<span matPrefix>/100</span></td>
       </ng-container>
 
 
