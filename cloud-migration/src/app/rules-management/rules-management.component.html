@@ -104,16 +104,17 @@
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Type </mat-label>
-              <mat-select matInput formControlName="type" required>
-                <mat-option value="bigdata">Big Data</mat-option>
-                <mat-option value="plateformeweb">Platforme Web</mat-option>
-                <mat-option value="plateformemobile">Platforme Mobile</mat-option>
+              <mat-select formControlName="type" required>
+                <mat-option *ngFor="let type of types" [value]="type">
+                            {{type}}
+                </mat-option>
               </mat-select>
           </mat-form-field>
         </form>
         <div>
           <button mat-raised-button color="primary" (click)="submit()">Submit</button>
           <button mat-raised-button *ngIf="boolCreate" color="warn" (click)="reset(formGroup)">Reset</button>
+          <button mat-raised-button *ngIf="!boolCreate" color="warn" (click)="back()">Back</button>
         </div>
   </mat-expansion-panel>
 
