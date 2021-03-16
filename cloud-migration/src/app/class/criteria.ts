@@ -5,4 +5,8 @@ export class Criteria {
   mrate: number | undefined;
   hrate: number | undefined;
   vhrate: number | undefined;
+
+  public toString = (): string => {
+    return `vlrate: ${this.vlrate}`;
+  }
 }

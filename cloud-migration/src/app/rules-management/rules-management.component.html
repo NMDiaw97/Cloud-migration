@@ -92,7 +92,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Criticity</mat-label>
-            <input matInput placeholder="Rate" type="number" formControlName="criticity" required/>
+            <input matInput placeholder="Rate" type="number" formControlName="criticity" required  matTooltip="message"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Complexity</mat-label>
@@ -102,9 +102,13 @@
             <mat-label>Availability</mat-label>
             <input matInput placeholder="Rate" type="number" formControlName="availability" required />
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field appearance="fill">
             <mat-label>Type </mat-label>
-            <input matInput placeholder="Rate" formControlName="type" required/>
+              <mat-select matInput formControlName="type" required>
+                <mat-option value="bigdata">Big Data</mat-option>
+                <mat-option value="plateformeweb">Platforme Web</mat-option>
+                <mat-option value="plateformemobile">Platforme Mobile</mat-option>
+              </mat-select>
           </mat-form-field>
         </form>
         <div>

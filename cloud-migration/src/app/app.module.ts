@@ -27,7 +27,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
 import { PricingManagementComponent } from './pricing-management/pricing-management.component';
@@ -70,7 +72,9 @@ import { LoginComponent } from './login/login.component';
     MatSortModule,
     MatExpansionModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    MatSelectModule
   ],
   providers: [SidenavService, MatSidenav],
   bootstrap: [AppComponent]

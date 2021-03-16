@@ -5,7 +5,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Criteria } from '../class/criteria';
 import { Rule } from '../class/rule';
+import { ConfirmationDialogComponent } from '../criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { CriteriaStoreService } from '../services/criteria-store.service';
 import { RulesService } from '../services/rules.service';
 
 @Component({
@@ -19,6 +22,9 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   formGroup!: FormGroup;
   boolCreate = true;
   panelOpenState = false;
+  criterion0!: Criteria;
+  criterion1!: Criteria;
+  criterion2!: Criteria;
   status = false;
   pageTitle: string | undefined;
   formTitle: string | undefined;
@@ -28,6 +34,7 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
 
   constructor(
     private ruleService: RulesService,
+    private criteriaService: CriteriaStoreService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private router: Router
@@ -40,14 +47,21 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.getAllruules();
+    this.getAllrules();
     this.newRuleForm();
+    this.getAllcriteriaValue();
   }
 
-  getAllruules(): void {
+  getAllrules(): void {
     this.ruleService.getRules().then( data => {
       this.dataSource.data = data.rulesappcloudready;
       console.log(data);
+    });
+  }
+
+  getAllcriteriaValue(): void {
+    this.criteriaService.getCriteria().then( data => {
+      console.log(' Criteria ', data.criteres);
     });
   }
 
@@ -94,9 +108,30 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
     rule.complexity = this.f.complexity.value;
     rule.availability = this.f.availability.value;
     rule.type = this.f.type.value;
-    console.log('new Data ', rule);
+    if (this.boolCreate) {
+      this.createRuleConfirmation(rule);
+    }
   }
 
+  createRuleConfirmation(rule: Rule): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '200px',
+      data: {
+          message: 'Confirm the creation of this new Rule !?'
+      }
+    });
+    dialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        this.ruleService.setRule(rule).then( data => {
+          console.log(data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+        this.router.navigate(['']);
+      }
+    });
+  }
 
   edit(row: any): void {
   }
