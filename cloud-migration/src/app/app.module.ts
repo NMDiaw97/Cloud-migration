@@ -36,6 +36,7 @@ import { PricingManagementComponent } from './pricing-management/pricing-managem
 import { RulesManagementComponent } from './rules-management/rules-management.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ProvidersManagementComponent } from './providers-management/providers-management.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { LoginComponent } from './login/login.component';
     PricingManagementComponent,
     RulesManagementComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProvidersManagementComponent
   ],
   imports: [
     BrowserModule,

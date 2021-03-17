@@ -7,6 +7,7 @@ import { RulesManagementComponent } from './rules-management/rules-management.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './security/auth.guard';
+import { ProvidersManagementComponent } from './providers-management/providers-management.component';
 const routes: Routes = [
 
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'rules-management',
     component: RulesManagementComponent
+  },
+  {
+    path: 'providers-management',
+    component: ProvidersManagementComponent
   }
 
 ];
