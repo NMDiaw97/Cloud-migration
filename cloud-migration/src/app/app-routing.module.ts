@@ -7,6 +7,7 @@ import { RulesManagementComponent } from './rules-management/rules-management.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './security/auth.guard';
+import { HomeComponent } from './home/home.component';
 const routes: Routes = [
 
   {
@@ -19,18 +20,24 @@ const routes: Routes = [
 
   },
   {
+    path: 'home',
+    component: HomeComponent
+
+  },
+  {
     path: 'criteria-management',
     component: CriteriaManagementComponent,
     canActivate: [AuthGuard]
   },
   {
     path: '',
-    redirectTo: '',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
     path: 'pricing-management',
-    component: PricingManagementComponent
+    component: PricingManagementComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -38,7 +45,8 @@ const routes: Routes = [
   },
   {
     path: 'rules-management',
-    component: RulesManagementComponent
+    component: RulesManagementComponent,
+    canActivate: [AuthGuard]
   }
 
 ];

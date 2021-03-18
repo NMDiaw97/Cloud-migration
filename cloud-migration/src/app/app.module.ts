@@ -34,6 +34,11 @@ import { PricingManagementComponent } from './pricing-management/pricing-managem
 import { RulesManagementComponent } from './rules-management/rules-management.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AddCloudCriteriaComponent } from './add-cloud-criteria/add-cloud-criteria.component';
+import { AddCloudCriteriaManagementComponent } from './add-cloud-criteria-management/add-cloud-criteria-management.component';
+import { CloudCriteriaManagementComponent } from './cloud-criteria-management/cloud-criteria-management.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +52,12 @@ import { LoginComponent } from './login/login.component';
     PricingManagementComponent,
     RulesManagementComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    AddCloudCriteriaComponent,
+    AddCloudCriteriaManagementComponent,
+    CloudCriteriaManagementComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

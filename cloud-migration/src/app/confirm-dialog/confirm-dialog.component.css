@@ -1,0 +1,26 @@
+.content-container{
+    display: flex;
+    width: 300px;
+}
+.button-container{
+    margin-top: 50px;
+    padding: 25px;
+    text-align: center;
+
+}
+#close-icon{
+    margin-left: auto;
+    order: 2px;
+    font-weight: bold;
+}
+#no-button {
+   margin: 5px;
+    float: right;
+ 
+}
+
+#yes-button{
+    margin-left: 35px;
+    float: left;
+}
+
