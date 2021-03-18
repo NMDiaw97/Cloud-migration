@@ -128,6 +128,12 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
 
   }
 
+  back(): void {
+    this.newCriteriaForm();
+    this.boolCreate = true;
+    this.panelOpenState = false;
+  }
+
   reset(form: FormGroup): void {
     form.reset();
   }
@@ -181,7 +187,7 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '200px',
       data: {
-        message: 'Confirm tu update this criterion !'
+        message: 'Confirm to update this criterion !'
       }
     });
     dialogRef.afterClosed().subscribe( result => {

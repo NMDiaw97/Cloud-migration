@@ -37,6 +37,7 @@ import { RulesManagementComponent } from './rules-management/rules-management.co
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProvidersManagementComponent } from './providers-management/providers-management.component';
+import { AttributsComponent } from './providers-management/attributs/attributs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { ProvidersManagementComponent } from './providers-management/providers-m
     RulesManagementComponent,
     RegisterComponent,
     LoginComponent,
-    ProvidersManagementComponent
+    ProvidersManagementComponent,
+    AttributsComponent
   ],
   imports: [
     BrowserModule,

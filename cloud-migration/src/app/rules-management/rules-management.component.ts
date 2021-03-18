@@ -5,10 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Criteria } from '../class/criteria';
 import { Rule } from '../class/rule';
 import { ConfirmationDialogComponent } from '../criteria-management/confirmation-dialog/confirmation-dialog.component';
-import { CriteriaStoreService } from '../services/criteria-store.service';
 import { RulesService } from '../services/rules.service';
 
 @Component({
@@ -27,6 +25,7 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   pageTitle: string | undefined;
   formTitle: string | undefined;
   types!: string[];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -53,9 +52,9 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   getAllrules(): void {
     this.ruleService.getRules().then( data => {
       this.dataSource.data = data.rulesappcloudready;
-      console.log(data);
     });
   }
+
   applyFilter(event: Event): void {
     const filterValue = ( event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
