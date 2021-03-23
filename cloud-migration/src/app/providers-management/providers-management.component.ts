@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Provider } from '../class/provider';
 import { ConfirmationDialogComponent } from '../criteria-management/confirmation-dialog/confirmation-dialog.component';
 import { ProvidersService } from '../services/providers.service';
+import { SharedService } from '../services/shared.service';
 @Component({
   selector: 'app-providers-management',
   templateUrl: './providers-management.component.html',
@@ -21,12 +22,14 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
   formGroup!: FormGroup;
   boolCreate = true;
   panelOpenState = false;
+  attributsNames: string[] = [];
   status = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private providersService: ProvidersService,
+    private sharedService: SharedService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private router: Router
@@ -40,12 +43,13 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllProvider();
     this.newProviderForm();
+    this.sharedNames();
   }
 
   getAllProvider(): void {
     this.providersService.getProviders().then( data => {
       this.dataSource.data = data.providers;
-      console.log(data.providers);
+      data.providers.forEach((item: Provider) => this.attributsNames.push(item.name));
     });
   }
 
@@ -96,7 +100,7 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
     form.reset();
   }
 
-    // tslint:disable-next-line:typedef[]
+    // tslint:disable-next-line:typedef
     get f() {
       return this.formGroup.controls;
     }
@@ -189,4 +193,9 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
       this.boolCreate = true;
       this.panelOpenState = false;
     }
+
+  sharedNames(): void {
+    this.sharedService.changeData(this.attributsNames);
+  }
+
 }

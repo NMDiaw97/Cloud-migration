@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.maxLength, Validators.minLength]]
     });
-  } 
-  
+  }
+
   reset(form: FormGroup): void {
     form.reset();
   }
@@ -52,13 +52,13 @@ export class LoginComponent implements OnInit {
       if (result) {
         this.authService.loginUser(user).then( data => {
           console.log(data);
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data.accesToken);
           this.router.navigate(['/rules-management']);
         })
         .catch(e => {
           console.log(e);
+          return this.loginForm();
         });
-        this.router.navigate(['']);
       }
     });
   }

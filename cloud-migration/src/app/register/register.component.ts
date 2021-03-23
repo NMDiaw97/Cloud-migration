@@ -54,15 +54,16 @@ export class RegisterComponent implements OnInit {
       if (result) {
         this.authService.registerUser(user).then( data => {
           console.log(data);
+          this.router.navigate(['/login']);
         })
         .catch(e => {
           console.log(e);
+          return this.registerForm();
         });
-        this.router.navigate(['']);
       }
     });
   }
-  
+
   submit(): void {
     if (this.formGroup.invalid) {
       return;

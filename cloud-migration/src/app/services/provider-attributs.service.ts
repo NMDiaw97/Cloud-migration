@@ -29,4 +29,5 @@ export class ProviderAttributsService {
   deleteAttribut(name: string): Promise<string> {
     return this.http.delete<string>(`${this.apiUrl}/providers/criteria/${name}`).toPromise();
   }
+
 }

@@ -46,7 +46,7 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllrules();
     this.newRuleForm();
-    this.types = ['Big Data', 'Web', 'Mobile', 'default'];
+    this.types = ['big data', 'web', 'mobile', 'default'];
   }
 
   getAllrules(): void {

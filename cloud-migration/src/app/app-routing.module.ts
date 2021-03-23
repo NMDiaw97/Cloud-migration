@@ -27,23 +27,28 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'pricing-management',
-    component: PricingManagementComponent
+    component: PricingManagementComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
-    component: SidebarComponent
+    component: SidebarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rules-management',
-    component: RulesManagementComponent
+    component: RulesManagementComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'providers-management',
-    component: ProvidersManagementComponent
+    component: ProvidersManagementComponent,
+    canActivate: [AuthGuard]
   }
 
 ];

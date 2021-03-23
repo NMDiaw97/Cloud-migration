@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ProviderAttribut } from 'src/app/class/provider-attribut';
 import { ConfirmationDialogComponent } from 'src/app/criteria-management/confirmation-dialog/confirmation-dialog.component';
 import { ProviderAttributsService } from 'src/app/services/provider-attributs.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-attributs',
@@ -17,7 +18,7 @@ import { ProviderAttributsService } from 'src/app/services/provider-attributs.se
 export class AttributsComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<ProviderAttribut>();
-  displayedColumns = ['name', 'behavior', 'weight', 'action'];
+  displayedColumns = ['name', 'behavior', 'weight', 'percentage', 'action'];
   pageTitle: string | undefined;
   formTitle: string | undefined;
   formGroup!: FormGroup;
@@ -30,6 +31,7 @@ export class AttributsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private attributsService: ProviderAttributsService,
+    private sharedService: SharedService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private router: Router
@@ -45,6 +47,9 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllAttributs();
     this.newAttributForm();
+    this.sharedService.currentData.subscribe( data => {
+      console.log('data from attributs ', data);
+    });
     this.types = ['benefit', 'cost'];
   }
 
@@ -69,7 +74,7 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required, Validators.max, Validators.min]],
       behavior: ['', [Validators.required]],
-      weight: ['', [Validators.required, Validators.max, Validators.min]]
+      weight: ['', [Validators.required, Validators.max, Validators.min]],
     });
   }
 
