@@ -1,0 +1,33 @@
+<div align="center">
+</div>
+<mat-dialog-content class="mat-typography" align="center">
+  <h4 mat-dialog-title align="center">Send Password Recovery Link</h4>
+  <form [formGroup]="formGroup" class="parent">
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" required  />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+<button mat-mini-fab color="warn" mat-dialog-close>
+    <mat-icon>clear</mat-icon>
+</button>
+  <button mat-mini-fab color="primary" [mat-dialog-close]="true" (click)="submit()"  cdkFocusInitial>
+    <mat-icon>done</mat-icon>
+  </button>
+</mat-dialog-actions>
+
+
+
+
+
+
+
+<!--
+<form [formGroup]="formGroup" class="form">
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Email" formControlName="email" required  />
+  </mat-form-field>
+</form>
+<button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="submit()">Send</button>
+-->

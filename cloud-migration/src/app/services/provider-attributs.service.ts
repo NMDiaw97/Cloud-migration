@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Provider } from '@angular/core';
+import { Attribute, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ProviderAttribut } from '../class/provider-attribut';
 
@@ -15,19 +15,19 @@ export class ProviderAttributsService {
   ) { }
 
   getAttributes(): Promise<any> {
-    return this.http.get<any>(`${this.apiUrl}/providers/criteria`).toPromise();
+    return this.http.get<any>(`${this.apiUrl}/criteria`).toPromise();
   }
 
-  setAttribut(newAttribut: ProviderAttribut): Promise<ProviderAttribut> {
-  return this.http.post<ProviderAttribut>(`${this.apiUrl}/providers/criteria`, newAttribut).toPromise();
+  setAttribut(attribut: ProviderAttribut): Promise<any> {
+    return this.http.post<Attribute>(`${this.apiUrl}/criteria`, attribut).toPromise();
   }
 
-  updateAttribut(updateAttribut: ProviderAttribut): Promise<ProviderAttribut> {
-    return this.http.put<ProviderAttribut>(`${this.apiUrl}/providers/criteria/${updateAttribut.name}`, updateAttribut).toPromise();
+  updateAttribut(attribut: ProviderAttribut): Promise<any> {
+    return this.http.put<ProviderAttribut>(`${this.apiUrl}/criteria/${attribut.name}`, attribut).toPromise();
   }
 
-  deleteAttribut(name: string): Promise<string> {
-    return this.http.delete<string>(`${this.apiUrl}/providers/criteria/${name}`).toPromise();
+  deleteAttribut(name: string): Promise<any> {
+    return this.http.delete<string>(`${this.apiUrl}/criteria/${name}`).toPromise();
   }
 
 }

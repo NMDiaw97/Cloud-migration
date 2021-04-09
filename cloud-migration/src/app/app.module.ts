@@ -29,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
@@ -39,6 +40,10 @@ import { LoginComponent } from './login/login.component';
 import { ProvidersManagementComponent } from './providers-management/providers-management.component';
 import { AttributsComponent } from './providers-management/attributs/attributs.component';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
+import { RecoveryMailComponent } from './reset-password/recovery-mail/recovery-mail.component';
+import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +59,11 @@ import { AuthInterceptor } from './services/auth.interceptor';
     RegisterComponent,
     LoginComponent,
     ProvidersManagementComponent,
-    AttributsComponent
+    AttributsComponent,
+    ResetPasswordComponent,
+    RecoveryMailComponent,
+    AlertDialogComponent,
+    UserManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +88,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     MatSliderModule,
     MatDialogModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [SidenavService, MatSidenav, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

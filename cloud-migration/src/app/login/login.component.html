@@ -1,5 +1,4 @@
-
-<mat-card class="container" style="text-align: center;">
+<mat-card *ngIf="!spinner" class="container" style="text-align: center;">
   <mat-card-title >Sign In</mat-card-title>
 
   <mat-card-content>
@@ -13,13 +12,18 @@
   </form>
 
   <button mat-raised-button color="primary" (click)="submit()">Login</button>
-
-<button mat-raised-button color="warn" (click)="reset(formGroup)">Reset</button>
+  <button mat-raised-button color="warn" (click)="reset(formGroup)">Reset</button>
   </mat-card-content>
   <mat-card-footer>
-    <h4>Forgot your password ?</h4>
+    <a (click)="forgetPassword()">
+      Forgot your password ?
+    </a>
     <a mat-list-item [routerLink]="'/register'">
         Create An Account?
       </a>
   </mat-card-footer>
 </mat-card>
+<div class="loader" align="center" *ngIf="spinner">
+  <mat-spinner color="warn"></mat-spinner>
+</div>
+

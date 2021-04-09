@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './security/auth.guard';
 import { ProvidersManagementComponent } from './providers-management/providers-management.component';
+import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 const routes: Routes = [
 
   {
@@ -48,6 +51,20 @@ const routes: Routes = [
   {
     path: 'providers-management',
     component: ProvidersManagementComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reset-password/:reset-token',
+    component: ResetPasswordComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent,
     canActivate: [AuthGuard]
   }
 
