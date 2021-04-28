@@ -1,0 +1,56 @@
+
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Critères des cloud providers</mat-card-title>
+      
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="CloudCriteriaForm" class="example-form" (ngSubmit)="CloudCriteriaForm.valid && onSubmit()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input formControlName="name"  matInput placeholder="Ex. GCP" required >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Fiabilité</mat-label>
+          <input  formControlName="reliability"  matInput placeholder="Ex. 10" required type="number" max="100" min="0" >
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Flexibilité</mat-label>
+          <input  formControlName="flexibility"  matInput placeholder="Ex. 10" required type="number" max="100" min="0">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Maturité</mat-label>
+          <input  formControlName="maturity"  formControlName="name"  matInput placeholder="Ex. 10" required type="number" max="100" min="0" >
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Sécurité</mat-label>
+          <input  formControlName="data_security" matInput placeholder="Ex. 10" name="data_securtity" required type="number" max="100" min="0">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Géolocation</mat-label>
+          <input  formControlName="geolocation" matInput placeholder="Ex. 10" required type="number" max="100" min="0">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Prix</mat-label>
+          <input  formControlName="price" matInput placeholder="Ex. 10" required type="number" max="100" min="0">
+        </mat-form-field>
+      
+      
+      
+        
+      </form>
+      
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-button type="submit" [disabled]="!CloudCriteriaForm.valid">Ajouter</button>
+      <button mat-button type="reset">Reset</button>
+    </mat-card-actions>
+  </mat-card>
+  

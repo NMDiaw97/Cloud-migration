@@ -7,6 +7,9 @@ import { element } from 'protractor';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { AddCloudCriteriaComponent } from '../add-cloud-criteria/add-cloud-criteria.component';
+import { AddProviderDialogService } from '../services/add-provider-dialog.service';
+import { ConfirmDeleteProviderService } from '../services/confirm-delete-provider.service';
 
 
 
@@ -27,9 +30,10 @@ export class CloudCriteriaManagementComponent implements OnInit {
   displayedColumns = ['name', 'reliability', 'flexibility', 'maturity', 'data_security', 'geolocation','price','actions'];
   element!: CloudCriteria[];
   dataSource = new MatTableDataSource<CloudCriteria>();
+
   
 
-  constructor(private cloudCriteriaService:CloudCriteriaService,private dialog:MatDialog) { }
+  constructor(private cloudCriteriaService:CloudCriteriaService,private addDiaolog:AddProviderDialogService, private confirmService:ConfirmDeleteProviderService) { }
 
   ngOnInit(): void {
 
@@ -37,8 +41,20 @@ export class CloudCriteriaManagementComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialog.open(ConfirmDialogComponent)
+    this.confirmService.ConfirmDelete()
   }
+  addCriteria(){
+    this.addDiaolog.openAddDialog()
+  }
+  
+  editProvider(){
+  }
+
+  deleteProvider(){
+
+  }
+     
+   
   
   getCloudCriteriaList():void{
 

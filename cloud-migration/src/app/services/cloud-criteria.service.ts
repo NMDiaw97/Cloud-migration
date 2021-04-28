@@ -8,22 +8,26 @@ import { CloudCriteria } from '../models/cloud-criteria.model';
 })
 export class CloudCriteriaService {
 
-  private baseUrl=" http://localhost:8085"
+  private baseUrl = " http://localhost:8085"
 
   constructor(private http: HttpClient) { }
 
   //get all
-  getCloudCriteriaList():Observable<any>{
+  getCloudCriteriaList(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/providers`);
 
 
   }
 
-  addCloudCriteria(){
+  addCloudCriteria(cloudCriteria: CloudCriteria): Observable<object> {
+    return this.http.post<any>(`${this.baseUrl}/providers`, cloudCriteria);
+  }
+
+  updatCloudCriteria() {
 
   }
-  
-  deleteCloudCriteria(){
+
+  deleteCloudCriteria() {
 
   }
 }

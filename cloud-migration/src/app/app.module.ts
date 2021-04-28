@@ -15,11 +15,15 @@ import { RegisterComponent } from './register/register.component';
 import {LoginComponent} from './login/login.component'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthService } from './services/auth.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CloudCriteriaManagementComponent } from './cloud-criteria-management/cloud-criteria-management.component';
 import {MatTableModule} from '@angular/material/table';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddCloudCriteriaComponent } from './add-cloud-criteria/add-cloud-criteria.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+ 
 
 
 
@@ -32,7 +36,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     RegisterComponent,
     LoginComponent,
     CloudCriteriaManagementComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AddCloudCriteriaComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    NgbModule
   
   ],
   providers: [AuthService, ConfirmDialogComponent],
