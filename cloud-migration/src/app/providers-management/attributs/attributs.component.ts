@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProviderAttribut } from 'src/app/class/provider-attribut';
-import { ConfirmationDialogComponent } from 'src/app/criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/dialog/confirmation-dialog/confirmation-dialog.component';
 import { ProviderAttributsService } from 'src/app/services/provider-attributs.service';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -172,7 +172,7 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     });
     dialogRef.afterClosed().subscribe( result => {
       if (result) {
-        this.attributsService.deleteAttribut(name).then( data => {
+        this.attributsService.deleteAttribut(name).then( (data) => {
           console.log(data);
         })
         .catch( e => {

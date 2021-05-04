@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Criteria} from 'src/app/class/criteria';
+import { Field } from '../class/field';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,5 +31,13 @@ export class CriteriaStoreService {
 
     deleteCriteria(criteriaName: string): Promise<string> {
       return this.http.delete<string>(`${this.apiUrl}/criteres/${criteriaName}`).toPromise();
+    }
+
+    setConditions(field: Field, namespace: string): Promise<Field> {
+      return this.http.post<Field>(`${this.apiUrl}/fields/${namespace}`, field).toPromise();
+    }
+
+    getCondByNanespace(namespace: string): Promise<any> {
+      return this.http.get<any>(`${this.apiUrl}/fields/${namespace}`).toPromise();
     }
 }

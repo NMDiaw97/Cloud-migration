@@ -18,7 +18,7 @@
         <mat-icon mat-list-icon color="primary">group_work</mat-icon>
         Providers-management
       </a>
-      <a mat-list-item [routerLink]="'/ user-management'">
+      <a mat-list-item [routerLink]="'/user-management'">
         <mat-icon mat-list-icon color="primary">group_work</mat-icon>
         user-management
       </a>
@@ -28,9 +28,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 100vh;">
       <router-outlet></router-outlet>
-    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

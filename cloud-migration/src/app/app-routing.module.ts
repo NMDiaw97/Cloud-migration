@@ -11,6 +11,7 @@ import { ProvidersManagementComponent } from './providers-management/providers-m
 import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+// import { CriteriaComponent } from './criteria-management/criteria/criteria.component';
 const routes: Routes = [
 
   {
@@ -67,7 +68,6 @@ const routes: Routes = [
     component: UserManagementComponent,
     canActivate: [AuthGuard]
   }
-
 ];
 
 @NgModule({

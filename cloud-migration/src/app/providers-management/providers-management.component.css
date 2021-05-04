@@ -41,26 +41,13 @@ table {
 
 .mat-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 310px;
   padding: 20px;
 }
-/*
-td, th {
-  width: 25%;
-}
- */
 
 
 .add {
   margin: 20px;
-}
-
-.mat-stepper-vertical {
-  margin-top: 8px;
-}
-
-.mat-form-field {
-  margin-top: 16px;
 }
 
 .header {
@@ -99,3 +86,11 @@ input.example-right-align {
 .green-icon {
   color: green;
 }
+
+
+.test1{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+

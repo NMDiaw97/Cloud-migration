@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../class/user';
-import { ConfirmationDialogComponent } from '../criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../dialog/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { RecoveryMailComponent } from '../reset-password/recovery-mail/recovery-mail.component';
@@ -14,6 +14,7 @@ import { RecoveryMailComponent } from '../reset-password/recovery-mail/recovery-
 export class LoginComponent implements OnInit {
   formGroup!: FormGroup;
   spinner = false;
+  test!: boolean;
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,

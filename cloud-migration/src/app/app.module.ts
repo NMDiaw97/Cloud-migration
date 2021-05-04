@@ -29,9 +29,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule } from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from './dialog/confirmation-dialog/confirmation-dialog.component';
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
 import { PricingManagementComponent } from './pricing-management/pricing-management.component';
 import { RulesManagementComponent } from './rules-management/rules-management.component';
@@ -44,6 +45,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password/reset-pa
 import { RecoveryMailComponent } from './reset-password/recovery-mail/recovery-mail.component';
 import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import {ProviderDialogComponent } from './dialog/provider-dialog/provider-dialog.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +54,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
     DashboardComponent,
     SidebarComponent,
     ToolbarComponent,
-    CriteriaComponent,
+    // CriteriaComponent,
     ConfirmationDialogComponent,
     DetailCriterionComponent,
     PricingManagementComponent,
@@ -64,6 +67,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
     RecoveryMailComponent,
     AlertDialogComponent,
     UserManagementComponent,
+    ProviderDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -85,11 +89,13 @@ import { UserManagementComponent } from './user-management/user-management.compo
     MatPaginatorModule,
     MatSortModule,
     MatExpansionModule,
+    MatStepperModule,
     MatSliderModule,
     MatDialogModule,
     MatTooltipModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [SidenavService, MatSidenav, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
