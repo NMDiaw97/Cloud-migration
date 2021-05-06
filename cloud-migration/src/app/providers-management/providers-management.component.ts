@@ -109,7 +109,7 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
   }
 
   edit(row: Provider): void {
-
+    this.boolCreate = false;
     this.panelOpenState = true;
     this.formTitle = `Update Provider ${row.name}`;
     this.nameformGroup.controls.name.setValue(row.name);
@@ -140,14 +140,7 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
     provider.datasecurity = this.getValue(this.dataSecformGroup).datasecurity.value;
     provider.geodispatching = this.getValue(this.geodispformGroup).geodispatching.value;
     provider.price = this.getValue(this.priceformGroup).price.value;
-    console.log(provider);
-    if (this.boolCreate) {
-      this.createProviderConfirmation(provider);
-    }
-    else {
-      console.log(provider);
-      this.updateProviderConfirmation(provider);
-    }
+    this.showProvider(provider);
   }
 
   createProviderConfirmation(provider: Provider): void {
@@ -211,16 +204,22 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
     });
   }
 
-  providerHandler(row: Provider | null): void {
+  showProvider(row: Provider): void {
     const dialogRef = this.dialog.open(ProviderDialogComponent, {
-      width: '700px',
-      height: '600px',
+      width: '300px',
+      height: '570px',
       data: {
         row
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        if (this.boolCreate) {
+          this.createProviderConfirmation(row);
+        } else {
+          this.updateProviderConfirmation(row);
+        }
+      }
     });
   }
 

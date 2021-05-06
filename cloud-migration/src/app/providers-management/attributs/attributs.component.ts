@@ -1,5 +1,6 @@
+import { group } from '@angular/animations';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,6 +23,9 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   pageTitle: string | undefined;
   formTitle: string | undefined;
   formGroup!: FormGroup;
+  nameformGroup!: FormGroup;
+  typeformGroup!: FormGroup;
+  ponderationformGroup!: FormGroup;
   boolCreate = true;
   panelOpenState = false;
   status = false;
@@ -72,15 +76,32 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   newAttributForm(): void {
     this.formTitle = ' Add new Provider attribut ';
     this.formGroup = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.max, Validators.min]],
+      name: ['', [Validators.required]],
       behavior: ['', [Validators.required]],
       weight: ['', [Validators.required, Validators.max, Validators.min]],
     });
+
+    this.nameformGroup = this.formBuilder.group({
+      name: ['',  Validators.required]
+    });
+    
+    this.typeformGroup = this.formBuilder.group({
+      behavior: ['', [Validators.required]],
+    })
+
+    this.ponderationformGroup = this.formBuilder.group({
+      weight: ['', [Validators.required, Validators.max, Validators.min]],
+    })
   }
 
   // tslint:disable-next-line:typedef
   get f() {
     return this.formGroup.controls;
+  }
+
+  // tslint:disable-next-line:typedef
+  getValue(formGroup: FormGroup) {
+    return formGroup.controls;
   }
 
   delete(name: string): void {

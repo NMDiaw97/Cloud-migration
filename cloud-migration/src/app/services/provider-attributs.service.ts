@@ -15,19 +15,19 @@ export class ProviderAttributsService {
   ) { }
 
   getAttributes(): Promise<any> {
-    return this.http.get<any>(`${this.apiUrl}/criteria`).toPromise();
+    return this.http.get<any>(`${this.apiUrl}/providers/criteria`).toPromise();
   }
 
   setAttribut(attribut: ProviderAttribut): Promise<any> {
-    return this.http.post<Attribute>(`${this.apiUrl}/criteria`, attribut).toPromise();
+    return this.http.post<Attribute>(`${this.apiUrl}/providers/criteria`, attribut).toPromise();
   }
 
   updateAttribut(attribut: ProviderAttribut): Promise<any> {
-    return this.http.put<ProviderAttribut>(`${this.apiUrl}/criteria/${attribut.name}`, attribut).toPromise();
+    return this.http.put<ProviderAttribut>(`${this.apiUrl}/providers/criteria/${attribut.name}`, attribut).toPromise();
   }
 
   deleteAttribut(name: string): Promise<any> {
-    return this.http.delete<string>(`${this.apiUrl}/criteria/${name}`).toPromise();
+    return this.http.delete<string>(`${this.apiUrl}/provider/criteria/${name}`).toPromise();
   }
 
 }

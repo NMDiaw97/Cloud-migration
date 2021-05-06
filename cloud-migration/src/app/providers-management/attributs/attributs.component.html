@@ -13,7 +13,7 @@
 <section>
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input  matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
   </mat-form-field>
 
   <div class="mat-elevation-z8">
@@ -36,8 +36,8 @@
         <td mat-cell *matCellDef="let row"> {{row.weight}}/100 </td>
       </ng-container>
 
-         <!-- Low Rate Column -->
-         <ng-container matColumnDef="percentage">
+      <!-- Low Rate Column -->
+      <ng-container matColumnDef="percentage">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Pourcentage </th>
         <td mat-cell *matCellDef="let row"> {{row.percentage}}% </td>
       </ng-container>
@@ -45,11 +45,15 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
         <td mat-cell *matCellDef="let row">
-          <button mat-mini-fab color="link" ><mat-icon (click)=" edit(row)">edit</mat-icon></button>
+          <button mat-mini-fab color="link">
+            <mat-icon (click)=" edit(row)">edit</mat-icon>
+          </button>
           <!--
           <button mat-mini-fab color="primary" (click)="detail(row)"><mat-icon>visibility</mat-icon></button>
           -->
-          <button mat-mini-fab color="warn" (click)="delete(row.name)"><mat-icon>delete</mat-icon></button>
+          <button mat-mini-fab color="warn" (click)="delete(row.name)">
+            <mat-icon>delete</mat-icon>
+          </button>
 
         </td>
       </ng-container>
@@ -69,7 +73,7 @@
 <mat-divider></mat-divider>
 
 <section>
-<mat-expansion-panel [expanded]="panelOpenState">
+  <mat-expansion-panel [expanded]="panelOpenState">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{formTitle}}
@@ -77,29 +81,87 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-        <form [formGroup]="formGroup" class="field">
-          <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Attribut Name" formControlName="name" required [readonly]="status" />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Type</mat-label>
-              <mat-select formControlName="behavior" required>
-                <mat-option *ngFor="let type of types" [value]="type">
-                            {{type}}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Ponderation</mat-label>
-            <input matInput placeholder="ponderation" type="number" formControlName="weight" required />
-          </mat-form-field>
-        </form>
-        <div>
-          <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-          <button mat-raised-button *ngIf="boolCreate" color="warn" (click)="reset(formGroup)">Reset</button>
-          <button mat-raised-button *ngIf="!boolCreate" color="warn" (click)="back()">Back</button>
-        </div>
+    <form [formGroup]="formGroup" class="field">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Attribut Name" formControlName="name" required [readonly]="status" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="behavior" required>
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ponderation</mat-label>
+        <input matInput placeholder="ponderation" type="number" formControlName="weight" required />
+      </mat-form-field>
+    </form>
+    <div>
+      <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+      <button mat-raised-button *ngIf="boolCreate" color="warn" (click)="reset(formGroup)">Reset</button>
+      <button mat-raised-button *ngIf="!boolCreate" color="warn" (click)="back()">Back</button>
+    </div>
   </mat-expansion-panel>
 
+</section>
+
+<section>
+  <mat-vertical-stepper linear="true" #stepper>
+
+    <mat-step [stepControl]="nameformGroup">
+      <form [formGroup]="nameformGroup">
+        <ng-template matStepLabel>Fill out name</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Attribut Name" formControlName="name" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="typeformGroup">
+      <form [formGroup]="typeformGroup">
+        <ng-template matStepLabel>Fil out Type</ng-template>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="behavior" required>
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="ponderationformGroup">
+      <form [formGroup]="ponderationformGroup">
+        <ng-template matStepLabel>Fil out ponderation</ng-template>
+        <div class="example-label-container" class="label-horizontal">
+          <label id="example-name-label" class="example-name-label">Ponderation</label>
+          <label class="example-value-label">{{getValue(ponderationformGroup).weight.value}}</label>
+        </div>
+        <mat-slider class="red1" thumbLabel formControlName="weight"></mat-slider>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
 </section>

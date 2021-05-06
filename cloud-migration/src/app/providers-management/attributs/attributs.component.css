@@ -99,3 +99,74 @@ input.example-right-align {
 .green-icon {
   color: green;
 }
+
+
+.field{
+  margin-right: 38px;
+}
+
+.green-icon {
+  color: green;
+}
+
+
+.test1{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+
+mat-slider {
+  width: 400px;
+  height: 100px;
+}
+.mat-stepper-vertical {
+  margin-top: 3px;
+}
+mat-slider {
+  width: 300px;
+}
+
+.label-horizontal {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 12px 12px;
+  max-width: 284px;
+}
+
+
+/* matSlider redcolor Classe*/
+
+:host ::ng-deep .red1 .mat-slider-thumb {
+  background-color: red;
+}
+
+:host ::ng-deep .red1 .mat-slider-thumb-label {
+  background-color: red;
+}
+
+:host ::ng-deep .red1 .mat-slider-track-fill {
+  background-color: red;
+}
+
+/* matSlider greencolor Classe*/
+
+:host ::ng-deep .green1 .mat-slider-thumb {
+  background-color: red;
+}
+
+:host ::ng-deep .green1 .mat-slider-thumb-label {
+  background-color: red;
+}
+
+:host ::ng-deep .green1 .mat-slider-track-fill {
+  background-color: red;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 320px;
+  padding: 20px;
+}

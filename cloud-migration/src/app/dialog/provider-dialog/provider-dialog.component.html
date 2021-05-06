@@ -1,118 +1,56 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <strong>Provider Name</strong>
+    <strong>{{provider.name}}</strong>
+  </li>
 
-<h4 align="center">{{formTitle}}</h4>
-<mat-divider></mat-divider>
-<mat-vertical-stepper linear="true" #stepper>
-      <mat-step [stepControl]="nameformGroup">
-        <form [formGroup]="nameformGroup">
-          <ng-template matStepLabel>Fill out name</ng-template>
-          <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="provider Name" formControlName="name" required max="100" min="0">
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="relaibilityformGroup">
-        <form [formGroup]="relaibilityformGroup">
-          <ng-template matStepLabel>Fiil out Relaibility</ng-template>
-          <div class="example-label-container" class="label-horizontal">
-            <label id="example-name-label" class="example-name-label">Relaibility</label>
-            <label class="example-value-label">{{getValue(relaibilityformGroup).relaibility.value}}</label>
-          </div>
-          <mat-slider class="red1" thumbLabel formControlName="relaibility"></mat-slider>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Reliability
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.reliability">
+    </mat-progress-spinner>
+    <div class="message">{{provider.reliability}}</div>
+  </li>
 
-          <div>
-            <button mat-button matStepperNext>Next</button>
-            <button mat-button matStepperPrevious>Back</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="flexibilityformGroup">
-        <form [formGroup]="flexibilityformGroup">
-          <ng-template matStepLabel>Fiil out flexibility</ng-template>
-          <div class="example-label-container" class="label-horizontal">
-            <label id="example-name-label" class="example-name-label">Flexibility</label>
-            <label class="example-value-label">{{getValue(flexibilityformGroup).flexibility.value}}</label>
-          </div>
-          <mat-slider class="red1" thumbLabel formControlName="flexibility"></mat-slider>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-            <button mat-button matStepperPrevious>Back</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="maturityformGroup">
-        <form [formGroup]="maturityformGroup">
-          <ng-template matStepLabel>Fiil out maturity</ng-template>
-          <div class="example-label-container" class="label-horizontal">
-            <label id="example-name-label" class="example-name-label">Maturity</label>
-            <label class="example-value-label">{{getValue(maturityformGroup).maturity.value}}</label>
-          </div>
-          <mat-slider thumbLabel formControlName="maturity"></mat-slider>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-            <button mat-button matStepperPrevious>Back</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="dataSecformGroup">
-        <form [formGroup]="dataSecformGroup">
-          <ng-template matStepLabel>Fill out data Security</ng-template>
-          <div class="example-label-container" class="label-horizontal">
-            <label id="example-name-label" class="example-name-label">Data Security</label>
-            <label class="example-value-label">{{getValue(dataSecformGroup).datasecurity.value}}</label>
-          </div>
-          <mat-slider thumbLabel formControlName="datasecurity"></mat-slider>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-            <button mat-button matStepperPrevious>Back</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]=" geodispformGroup">
-        <form [formGroup]=" geodispformGroup">
-          <ng-template matStepLabel>Fill out geodispatching</ng-template>
-          <div class="example-label-container" class="label-horizontal">
-            <label id="example-name-label" class="example-name-label">GeoDispatching</label>
-            <label class="example-value-label">{{getValue(geodispformGroup).geodispatching.value}}</label>
-          </div>
-          <mat-slider thumbLabel formControlName="geodispatching"></mat-slider>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-            <button mat-button matStepperPrevious>Back</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="priceformGroup">
-        <form [formGroup]="priceformGroup">
-          <ng-template matStepLabel>Fiil out price</ng-template>
-          <div class="example-label-container" class="label-horizontal">
-            <label id="example-name-label" class="example-name-label">Price</label>
-            <label class="example-value-label">{{getValue(priceformGroup).price.value}}</label>
-          </div>
-          <mat-slider thumbLabel formControlName="price"></mat-slider>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-            <button mat-button matStepperPrevious>Back</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button>
-            <mat-icon>share</mat-icon>
-          </button>
-        </div>
-      </mat-step>
-    </mat-vertical-stepper>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Flexibility
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.flexibility">
+    </mat-progress-spinner>
+    <div class="message">{{provider.flexibility}}</div>
+  </li>
 
-    <div>
-      <!-- <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-     <button mat-raised-button *ngIf="!boolCreate" color="warn" (click)="back()">Back</button>-->
-    </div>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Maturity
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.maturity">
+    </mat-progress-spinner>
+    <div class="message">{{provider.maturity}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Data Security
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.datasecurity">
+    </mat-progress-spinner>
+    <div class="message">{{provider.datasecurity}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    GeoDispatching
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.geodispatching">
+    </mat-progress-spinner>
+    <div class="message">{{provider.geodispatching}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Price
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.price">
+    </mat-progress-spinner>
+    <div class="message">{{provider.price}}</div>
+  </li>
+</ul>
+<mat-dialog-actions align="center">
+  <button mat-mini-fab color="warn" mat-dialog-close>
+    <mat-icon>clear</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" [mat-dialog-close]="true" cdkFocusInitial>
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-dialog-actions>
