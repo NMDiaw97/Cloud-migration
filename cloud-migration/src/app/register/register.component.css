@@ -1,0 +1,70 @@
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+  align-self:center;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+mat-form-field {
+  display: block;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 45px;
+}
+
+mat-form-field-underline {
+  background-color: rgb(170, 170, 170);
+}
+
+mat-form-field-ripple {
+  background-color: rgb(19, 7, 7);
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+    box-shadow: 14px 14px 28px rgba(0,0,0,0.25),
+      10px 10px 10px rgba(0,0,0,0.22);
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  margin-top: 60px;
+  text-align: center;
+  align-items: center;
+
+  display:flexbox;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid #2bffdc;
+  height: 40px;
+  padding-left: 37px;
+  padding-right: 37px;
+  margin-top: 50px;
+  margin-left: 23px;
+  margin-bottom: 23px;
+  background-color: #2bffd1;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form{
+  padding: 34px;
+  border-radius: 10px;
+  margin-top: 60px;
+}
+
+.loader {
+  margin-top: 20%;
+}
+

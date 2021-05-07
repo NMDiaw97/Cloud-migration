@@ -7,7 +7,7 @@
   <button mat-icon-button class="sidenav">
     <mat-icon>favorite</mat-icon>
   </button>
-  <button mat-icon-button class="sidenav">
-    <mat-icon>share</mat-icon>
+  <button mat-icon-button class="sidenav" (click)="logOut()">
+    <mat-icon color="warn" matTooltip="logOut">exit_to_app</mat-icon>
   </button>
 </mat-toolbar>

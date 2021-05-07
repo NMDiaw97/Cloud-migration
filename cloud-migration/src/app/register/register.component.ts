@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../class/user';
-import { ConfirmationDialogComponent } from '../criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../dialog/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 
@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  showBar: boolean | undefined;
+  spinner = false;
   formGroup!: FormGroup;
 
   constructor(
@@ -29,7 +29,8 @@ export class RegisterComponent implements OnInit {
   registerForm(): void {
     this.formGroup = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.maxLength, Validators.minLength]]
+      password: ['', [Validators.required, Validators.maxLength, Validators.minLength]],
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -37,32 +38,36 @@ export class RegisterComponent implements OnInit {
     form.reset();
   }
 
-    // tslint:disable-next-line:typedef
-    get f() {
-      return this.formGroup.controls;
-    }
+  // tslint:disable-next-line:typedef
+  get f() {
+    return this.formGroup.controls;
+  }
 
 
   registerConfirmation(user: User): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '200px',
+      width: '400px',
       data: {
           message: 'Confirm Registration !?'
       }
     });
     dialogRef.afterClosed().subscribe( result => {
       if (result) {
+        this.spinner = true;
         this.authService.registerUser(user).then( data => {
           console.log(data);
+          this.spinner = false;
+          this.router.navigate(['/login']);
         })
         .catch(e => {
           console.log(e);
+          this.spinner = false;
+          return this.registerForm();
         });
-        this.router.navigate(['']);
       }
     });
   }
-  
+
   submit(): void {
     if (this.formGroup.invalid) {
       return;
@@ -70,6 +75,8 @@ export class RegisterComponent implements OnInit {
     const userData = new User();
     userData.username = this.f.username.value;
     userData.password = this.f.password.value ;
+    userData.email = this.f.email.value;
+    console.log(' register ', userData);
     this.registerConfirmation(userData);
   }
 

@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Rule } from '../class/rule';
+import { ConfirmationDialogComponent } from '../dialog/confirmation-dialog/confirmation-dialog.component';
 import { RulesService } from '../services/rules.service';
 
 @Component({
@@ -17,11 +18,14 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Rule>();
   displayedColumns = ['name', 'criticity', 'complexity', 'availability', 'type', 'action'];
   formGroup!: FormGroup;
+  selected = 'type';
   boolCreate = true;
   panelOpenState = false;
   status = false;
   pageTitle: string | undefined;
   formTitle: string | undefined;
+  types!: string[];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -40,14 +44,14 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.getAllruules();
+    this.getAllrules();
     this.newRuleForm();
+    this.types = ['big data', 'web', 'mobile', 'default'];
   }
 
-  getAllruules(): void {
+  getAllrules(): void {
     this.ruleService.getRules().then( data => {
       this.dataSource.data = data.rulesappcloudready;
-      console.log(data);
     });
   }
 
@@ -70,9 +74,6 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
        type: ['', [Validators.required]]
      });
    }
-  delete(name: string): void {
-  }
-
 
   reset(form: FormGroup): void {
     form.reset();
@@ -94,14 +95,98 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
     rule.complexity = this.f.complexity.value;
     rule.availability = this.f.availability.value;
     rule.type = this.f.type.value;
-    console.log('new Data ', rule);
+    if (this.boolCreate) {
+      this.createRuleConfirmation(rule);
+    }
+    else {
+      this.updateRuleConfirmation(rule);
+      console.log(rule);
+    }
   }
 
+  createRuleConfirmation(rule: Rule): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '200px',
+      data: {
+          message: 'Confirm the creation of this new Rule !?'
+      }
+    });
+    dialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        this.ruleService.setRule(rule).then( data => {
+          console.log(data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  deleteRuleConfirmation(name: string): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '200px',
+      data: {
+        message: 'Confirm to drop this criterion ?'
+      },
+    });
+    dialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        this.ruleService.deleteRule(name).then( data => {
+          console.log(data);
+        })
+        .catch( e => {
+          console.log(e);
+        });
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  updateRuleConfirmation(rule: Rule): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '200px',
+      data: {
+        message: 'Confirm tu update this Rule!'
+      }
+    });
+    dialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        this.ruleService.updateRule(rule).then( data => {
+          console.log(data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+        this.router.navigate(['']);
+      }
+    });
+  }
 
   edit(row: any): void {
+    this.panelOpenState = true;
+    this.formTitle = 'Update Rule ' + row.name;
+    this.f.name.setValue(row.name);
+    this.f.criticity.setValue(row.criticity);
+    this.f.complexity.setValue(row.complexity);
+    this.f.availability.setValue(row.availability);
+    this.f.type.setValue(row.type);
+    this.status = true;
+    this.boolCreate = false;
   }
 
   detail(row: any): void {
+  }
+
+  delete(name: string): void {
+    this.deleteRuleConfirmation(name);
+  }
+
+  back(): void {
+    this.newRuleForm();
+    this.boolCreate = true;
+    this.panelOpenState = false;
   }
 }
 

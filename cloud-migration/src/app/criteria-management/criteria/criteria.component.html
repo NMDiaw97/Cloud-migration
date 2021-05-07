@@ -1,1 +1,90 @@
-<p>criteria works!</p>
+<!--<section>
+  <div class="container">
+    <mdb-card style="width:37rem;">
+      <form [formGroup]='criterionForm' class="field">
+        <div class="md-form input-group" style="padding: 23px;">
+          <input type="text" class="form-control" placeholder="Nom de la critere" formControlName="criterionName" required>
+          <div class="input-group-append">
+            <button mat-mini-fab color="success" (click)="addCond()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div formArrayName="conditions" *ngFor="let cond of getControles(); let i = index;">
+
+          <div [formGroupName]="i">
+
+            <div class="md-form input-group" style="padding: 23px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text md-addon">Condition {{i}}</span>
+              </div>
+              <input type="text" aria-label="First name" class="form-control" placeholder="condition" formControlName="condName" required style="margin-right:21px;">
+              <input type="text" aria-label="Last name" class="form-control" placeholder="value" formControlName="condValue" required>
+
+              <div class="input-group-append">
+                <button mat-icon-button color="warn" (click)="removeCond(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <mat-form-field style="padding: 23px">
+          <mat-select formControlName="attribute" placeholder="criterion" required>
+            <mat-option *ngFor="let attr of attributes" [value]="attr">
+              {{attr}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <div class="foot">
+          <button type="button" (click)="submitForm()" class="btn btn-warning">Save</button>
+        </div>
+
+      </form>
+    </mdb-card>
+  </div>
+</section>
+<mat-divider></mat-divider>
+<section>
+  <div *ngFor="let field of allFields">
+    <h4 align="center">{{field.name}}</h4>
+    <mat-divider></mat-divider>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" *ngFor="let subfield of field.condSource">
+          <mdb-card style="width: 205px; height: auto; margin-bottom:23px; margin-top:23px">
+            <mdb-card-header class="text-center h4">{{subfield.criterion}}</mdb-card-header>
+            <mdb-card-body>
+              <mdb-card-text>
+              </mdb-card-text>
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let cond of subfield.conditions" class="list-group-item d-flex justify-content-between align-items-center">
+                  <strong>{{cond.condName}}</strong>
+                  <mdb-badge [pill]="true" [danger]="true">{{cond.condValue}}</mdb-badge>
+                </li>
+              </ul>
+            </mdb-card-body>
+            <mdb-card-footer>
+              <ul class="list-group list-group-flush">
+                <li class="d-flex justify-content-between align-items-center">
+                  <button mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </li>
+              </ul>
+            </mdb-card-footer>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+-->

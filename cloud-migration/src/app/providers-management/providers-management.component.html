@@ -1,0 +1,228 @@
+<section class="section1">
+  <div class="example-button-row">
+    <div class="example-flex-container">
+      <div class="example-button-container-bis">
+        <h2> {{ pageTitle }}</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<mat-divider></mat-divider>
+
+<section>
+  <div  class="test1">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
+    </mat-form-field>
+    <!--<button mat-mini-fab color="primary" (click)="providerHandler(null)">
+      <mat-icon >add</mat-icon>
+    </button>-->
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Very Low RateColumn -->
+      <ng-container matColumnDef="reliability">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reliability /100</th>
+        <td mat-cell *matCellDef="let row"> {{row.reliability}} </td>
+      </ng-container>
+
+      <!-- Low Rate Column -->
+      <ng-container matColumnDef="flexibility">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flexibility /100</th>
+        <td mat-cell *matCellDef="let row"> {{row.flexibility}} </td>
+      </ng-container>
+
+      <!-- Moderate RateColumn -->
+      <ng-container matColumnDef="maturity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maturity /100</th>
+        <td mat-cell *matCellDef="let row"> {{row.maturity}} </td>
+      </ng-container>
+
+      <!--Hight Rate Column -->
+      <ng-container matColumnDef="dataSecurity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Security /100</th>
+        <td mat-cell *matCellDef="let row"> {{row.datasecurity}} </td>
+      </ng-container>
+
+      <!--Hight Rate Column -->
+      <ng-container matColumnDef="geoDispatching">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Geo Dispatching /100</th>
+        <td mat-cell *matCellDef="let row"> {{row.geodispatching}} </td>
+      </ng-container>
+
+      <!--Hight Rate Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price /100</th>
+        <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+      </ng-container>
+
+
+      <!-- UPDATE Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-mini-fab color="link">
+            <mat-icon (click)="edit(row)">edit</mat-icon>
+          </button>
+          <!--
+          <button mat-mini-fab color="primary" (click)="detail(row)"><mat-icon>visibility</mat-icon></button>
+          -->
+          <button mat-mini-fab color="warn" (click)="delete(row.name)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</section>
+
+<mat-divider></mat-divider>
+
+<section>
+  <mat-expansion-panel [expanded]="panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{formTitle}}
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-vertical-stepper linear="true" #stepper>
+      <mat-step [stepControl]="nameformGroup">
+        <form [formGroup]="nameformGroup">
+          <ng-template matStepLabel>Fill out name</ng-template>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="provider Name" formControlName="name" required max="100" min="0">
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="relaibilityformGroup">
+        <form [formGroup]="relaibilityformGroup">
+          <ng-template matStepLabel>Fiil out Relaibility</ng-template>
+          <div class="example-label-container" class="label-horizontal">
+            <label id="example-name-label" class="example-name-label">Relaibility</label>
+            <label class="example-value-label">{{getValue(relaibilityformGroup).relaibility.value}}</label>
+          </div>
+          <mat-slider class="red1" thumbLabel formControlName="relaibility"></mat-slider>
+
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="flexibilityformGroup">
+        <form [formGroup]="flexibilityformGroup">
+          <ng-template matStepLabel>Fiil out flexibility</ng-template>
+          <div class="example-label-container" class="label-horizontal">
+            <label id="example-name-label" class="example-name-label">Flexibility</label>
+            <label class="example-value-label">{{getValue(flexibilityformGroup).flexibility.value}}</label>
+          </div>
+          <mat-slider class="red1" thumbLabel formControlName="flexibility"></mat-slider>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="maturityformGroup">
+        <form [formGroup]="maturityformGroup">
+          <ng-template matStepLabel>Fiil out maturity</ng-template>
+          <div class="example-label-container" class="label-horizontal">
+            <label id="example-name-label" class="example-name-label">Maturity</label>
+            <label class="example-value-label">{{getValue(maturityformGroup).maturity.value}}</label>
+          </div>
+          <mat-slider thumbLabel formControlName="maturity"></mat-slider>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="dataSecformGroup">
+        <form [formGroup]="dataSecformGroup">
+          <ng-template matStepLabel>Fill out data Security</ng-template>
+          <div class="example-label-container" class="label-horizontal">
+            <label id="example-name-label" class="example-name-label">Data Security</label>
+            <label class="example-value-label">{{getValue(dataSecformGroup).datasecurity.value}}</label>
+          </div>
+          <mat-slider thumbLabel formControlName="datasecurity"></mat-slider>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]=" geodispformGroup">
+        <form [formGroup]=" geodispformGroup">
+          <ng-template matStepLabel>Fill out geodispatching</ng-template>
+          <div class="example-label-container" class="label-horizontal">
+            <label id="example-name-label" class="example-name-label">GeoDispatching</label>
+            <label class="example-value-label">{{getValue(geodispformGroup).geodispatching.value}}</label>
+          </div>
+          <mat-slider thumbLabel formControlName="geodispatching"></mat-slider>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="priceformGroup">
+        <form [formGroup]="priceformGroup">
+          <ng-template matStepLabel>Fiil out price</ng-template>
+          <div class="example-label-container" class="label-horizontal">
+            <label id="example-name-label" class="example-name-label">Price</label>
+            <label class="example-value-label">{{getValue(priceformGroup).price.value}}</label>
+          </div>
+          <mat-slider thumbLabel formControlName="price"></mat-slider>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+
+    <div>
+      <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+      <button mat-raised-button *ngIf="!boolCreate" color="warn" (click)="back()">Back</button>
+    </div>
+  </mat-expansion-panel>
+
+</section>
+
+<section>
+  <app-attributs></app-attributs>
+</section>
+<mat-divider></mat-divider>

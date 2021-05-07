@@ -1,0 +1,56 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <strong>Provider Name</strong>
+    <strong>{{provider.name}}</strong>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Reliability
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.reliability">
+    </mat-progress-spinner>
+    <div class="message">{{provider.reliability}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Flexibility
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.flexibility">
+    </mat-progress-spinner>
+    <div class="message">{{provider.flexibility}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Maturity
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.maturity">
+    </mat-progress-spinner>
+    <div class="message">{{provider.maturity}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Data Security
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.datasecurity">
+    </mat-progress-spinner>
+    <div class="message">{{provider.datasecurity}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    GeoDispatching
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.geodispatching">
+    </mat-progress-spinner>
+    <div class="message">{{provider.geodispatching}}</div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Price
+    <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="provider.price">
+    </mat-progress-spinner>
+    <div class="message">{{provider.price}}</div>
+  </li>
+</ul>
+<mat-dialog-actions align="center">
+  <button mat-mini-fab color="warn" mat-dialog-close>
+    <mat-icon>clear</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" [mat-dialog-close]="true" cdkFocusInitial>
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-dialog-actions>

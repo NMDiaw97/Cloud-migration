@@ -92,7 +92,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Criticity</mat-label>
-            <input matInput placeholder="Rate" type="number" formControlName="criticity" required/>
+            <input matInput placeholder="Rate" type="number" formControlName="criticity" required  matTooltip="message"/>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Complexity</mat-label>
@@ -104,12 +104,17 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Type </mat-label>
-            <input matInput placeholder="Rate" formControlName="type" required/>
+              <mat-select formControlName="type" required>
+                <mat-option *ngFor="let type of types" [value]="type">
+                            {{type}}
+                </mat-option>
+              </mat-select>
           </mat-form-field>
         </form>
         <div>
           <button mat-raised-button color="primary" (click)="submit()">Submit</button>
           <button mat-raised-button *ngIf="boolCreate" color="warn" (click)="reset(formGroup)">Reset</button>
+          <button mat-raised-button *ngIf="!boolCreate" color="warn" (click)="back()">Back</button>
         </div>
   </mat-expansion-panel>
 

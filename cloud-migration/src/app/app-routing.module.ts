@@ -7,6 +7,11 @@ import { RulesManagementComponent } from './rules-management/rules-management.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './security/auth.guard';
+import { ProvidersManagementComponent } from './providers-management/providers-management.component';
+import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+// import { CriteriaComponent } from './criteria-management/criteria/criteria.component';
 const routes: Routes = [
 
   {
@@ -26,21 +31,43 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'pricing-management',
-    component: PricingManagementComponent
+    component: PricingManagementComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
-    component: SidebarComponent
+    component: SidebarComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'rules-management',
-    component: RulesManagementComponent
+    component: RulesManagementComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'providers-management',
+    component: ProvidersManagementComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reset-password/:reset-token',
+    component: ResetPasswordComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent,
+    canActivate: [AuthGuard]
   }
-
 ];
 
 @NgModule({
