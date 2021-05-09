@@ -6,10 +6,12 @@
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput placeholder="UserName" formControlName="username" required  />
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput placeholder="Rate" type="password" formControlName="password" required/>
+          <mat-icon matSuffix>password</mat-icon>
         </mat-form-field>
         <mat-card-actions fxLayoutAlign="center center" class="actions">
           <button mat-raised-button color="primary" (click)="submit()">Submit</button>
