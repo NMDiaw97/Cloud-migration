@@ -3,30 +3,30 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {User} from '../models/user.model'
 import { Observable,throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
+
+
+import { environment } from 'src/environments/environment';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  apiUrl = environment.apiUrl;
 
-  private apiUrl = " http://localhost:8085";
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  constructor(private http: HttpClient) { }
-
-  registerUser(user: User):Observable<object>{
-    return this.http.post<any>(`${this.apiUrl}/register`,user)
-
-  }
-  loginUser(user:User):Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/login`,user)
-    .pipe(catchError(this.errorHandler))
-
+  registerUser(user: User): Promise<User> {
+    return this.http.post<User>(`${this.apiUrl}/register`, user).toPromise();
   }
 
-  errorHandler(error:HttpErrorResponse){
-    return throwError(error);
+  loginUser(user: User): Promise<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, user).toPromise();
   }
 
-  loggedIn(){
-    return !!localStorage.getItem('token')
+  loggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
 }

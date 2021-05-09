@@ -3,63 +3,80 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CriteriaManagementComponent } from './criteria-management/criteria-management.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatProgressBarModule} from '@angular/material/progress-bar'
-import {MatIconModule} from '@angular/material/icon';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { CriteriaComponent } from './criteria-management/criteria/criteria.component';
+
+import {MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { SidenavService } from './services/sidenav.service';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
+import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
+import { PricingManagementComponent } from './pricing-management/pricing-management.component';
+import { RulesManagementComponent } from './rules-management/rules-management.component';
 import { RegisterComponent } from './register/register.component';
-import {LoginComponent} from './login/login.component'
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { AuthService } from './services/auth.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CloudCriteriaManagementComponent } from './cloud-criteria-management/cloud-criteria-management.component';
-import {MatTableModule} from '@angular/material/table';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import { AddCloudCriteriaComponent } from './add-cloud-criteria/add-cloud-criteria.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
- 
-
-
-
-
-
-
+import { LoginComponent } from './login/login.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
+    CriteriaManagementComponent,
+    DashboardComponent,
+    SidebarComponent,
+    ToolbarComponent,
+    CriteriaComponent,
+    ConfirmationDialogComponent,
+    DetailCriterionComponent,
+    PricingManagementComponent,
+    RulesManagementComponent,
     RegisterComponent,
-    LoginComponent,
-    CloudCriteriaManagementComponent,
-    ConfirmDialogComponent,
-    AddCloudCriteriaComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
     MatCardModule,
-    MatTabsModule,
+    MatDividerModule,
+    MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatProgressBarModule,
-    MatIconModule,
-    HttpClientModule,
-    FormsModule,
-    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatExpansionModule,
+    MatSliderModule,
     MatDialogModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    NgbModule
-  
+    MatGridListModule,
+    FlexLayoutModule
   ],
-  providers: [AuthService, ConfirmDialogComponent],
+  providers: [SidenavService, MatSidenav],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

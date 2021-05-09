@@ -1,28 +1,26 @@
-<div class="card-div">
-    <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title class="title">Login Form</mat-card-title>
-          <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
-        </mat-card-header>
-        <mat-card-content>
-            <form class="example-form" #userform="ngForm" (ngSubmit)="loginUser()">
-        
-                <mat-form-field class="example-full-width">
-                  <mat-label>Username</mat-label>
-                  <input type="text" required
-                  [(ngModel)]="user.username"  name="username" matInput placeholder="ndeye@gmail.com">
-                 
-                </mat-form-field>
-    
-                <mat-form-field class="example-full-width">
-                    <mat-label>Password</mat-label>
-                    <input  [(ngModel)]="user.password" name="password" matInput placeholder="password" type="password" required>
-                  </mat-form-field>
-                  <button [disabled]="userform.form.invalid" mat-raised-button color="primary">Submit</button>
 
-              
-              </form>
-        </mat-card-content>
-      </mat-card>
-
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card class="login" fxFlex="25">
+    <mat-card-content>
+      <mat-toolbar color="primary" >Login Page</mat-toolbar >
+      <form fxLayoutAlign="stretch" fxLayout="column"[formGroup]="formGroup" class="field">
+        <mat-form-field appearance="outline" class="name">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="UserName" formControlName="username" required  />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="password">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Rate" type="password" formControlName="password" required/>
+        </mat-form-field>
+        <mat-card-actions fxLayoutAlign="center center" class="actions">
+          <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+          <button mat-raised-button color="warn" (click)="reset(formGroup)">Reset</button>
+      </mat-card-actions>
+      
+      </form>
+      
+    </mat-card-content>
+   
+  </mat-card>
 </div>
+
