@@ -14,7 +14,6 @@ export class ProviderDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {

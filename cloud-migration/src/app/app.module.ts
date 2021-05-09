@@ -47,6 +47,8 @@ import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.compone
 import { UserManagementComponent } from './user-management/user-management.component';
 import {ProviderDialogComponent } from './dialog/provider-dialog/provider-dialog.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AttributDialogComponent } from './dialog/attribut-dialog/attribut-dialog.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     RecoveryMailComponent,
     AlertDialogComponent,
     UserManagementComponent,
-    ProviderDialogComponent
+    ProviderDialogComponent,
+    AttributDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

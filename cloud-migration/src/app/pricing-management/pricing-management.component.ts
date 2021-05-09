@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,7 +22,14 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
   formTitle = '';
   displayedColumns = ['category', 'cpu', 'ram', 'pricePerHour', 'pricePerMonth', 'provider', 'action'];
   dataSource = new MatTableDataSource<Pricing>();
-  formGroup!: FormGroup;
+
+  categoryformGroup!: FormGroup;
+  cpuformGroup!: FormGroup;
+  ramformGroup!: FormGroup;
+  pricePerHourformGroup!: FormGroup;
+  pricePerMonthformGroup!: FormGroup;
+  providerformGroup!: FormGroup;
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -35,7 +42,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.pageTitle = 'Pricing Management';
+    this.pageTitle = 'Pricing';
     this.geAllPricing();
     this.newPricing();
   }
@@ -46,44 +53,62 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
   }
 
   geAllPricing(): void {
-    this.pricingService.getPricing().then( data => {
+    this.pricingService.getPricing().then(data => {
       this.dataSource.data = data.pricings;
     })
-    .catch(e => {
-      console.log(e);
-    });
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   applyFilter(event: Event): void {
-    const filterValue = ( event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if ( this.dataSource.paginator) {
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
   newPricing(): void {
-   this.formTitle = 'Add new category pricing';
-   this.formGroup = this.formBuilder.group({
-     category: ['', Validators.required],
-     cpu: ['', [Validators.required, Validators.max]],
-     ram: ['', [Validators.required, Validators.max]],
-     pricePerHour: ['', [Validators.required]],
-     pricePerMonth: ['', [Validators.required]],
-     provider: ['', [Validators.required]]
-   });
+    this.formTitle = 'Add new category pricing';
+
+    this.categoryformGroup = this.formBuilder.group({
+      category: ['', [Validators.required]]
+    });
+
+    this.cpuformGroup = this.formBuilder.group({
+      cpu: ['', [Validators.required]]
+    })
+
+    this.ramformGroup = this.formBuilder.group({
+      ram: ['', [Validators.required]]
+    })
+
+    this.pricePerHourformGroup = this.formBuilder.group({
+      pricePerHour: ['', [Validators.required]]
+    })
+
+    this.pricePerMonthformGroup = this.formBuilder.group({
+      pricePerMonth: ['', [Validators.required]]
+    })
+
+    this.providerformGroup = this.formBuilder.group({
+      provider: ['', [Validators.required]]
+    })
+
+   
   }
 
   edit(row: Pricing): void {
     this.panelOpenState = true;
     this.formTitle = 'Update Criterion';
-    this.formGroup.controls.category.setValue(row.category);
-    this.formGroup.controls.provider.setValue(row.provider);
-    this.formGroup.controls.cpu.setValue(row.cpu);
-    this.formGroup.controls.ram.setValue(row.ram);
-    this.formGroup.controls.pricePerHour.setValue(row.pricePerHour);
-    this.formGroup.controls.pricePerMonth.setValue(row.pricePerMonth);
+    this.getValue(this.categoryformGroup).category.setValue(row.category);
+    this.getValue(this.cpuformGroup).cpu.setValue(row.cpu);
+    this.getValue(this.ramformGroup).ram.setValue(row.ram);
+    this.getValue(this.pricePerHourformGroup).pricePerHour.setValue(row.pricePerHour);
+    this.getValue(this.pricePerMonthformGroup).pricePerMonth.setValue(row.pricePerMonth);
+    this.getValue(this.providerformGroup).provider.setValue(row.provider);
     this.status = true;
     this.boolCreate = false;
   }
@@ -92,17 +117,21 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
     this.deletePricingConfirmation(provider, category);
   }
 
+   // tslint:disable-next-line:typedef
+   getValue(formGroup: FormGroup) {
+    return formGroup.controls;
+  }
+
   submit(): void {
-    if (this.formGroup.invalid) {
-      return;
-    }
     const pricing = new Pricing();
-    pricing.category = this.f.category.value;
-    pricing.cpu = this.f.cpu.value;
-    pricing.ram = this.f.ram.value;
-    pricing.pricePerHour = this.f.pricePerHour.value;
-    pricing.pricePerMonth = this.f.pricePerMonth.value;
-    pricing.provider = this.f.provider.value;
+    pricing.category = this.categoryformGroup.controls.category.value;
+    pricing.ram = this.ramformGroup.controls.ram.value;
+    pricing.cpu = this.cpuformGroup.controls.cpu.value;
+    pricing.pricePerHour = this.pricePerHourformGroup.controls.pricePerHour.value;
+    pricing.pricePerMonth = this.pricePerMonthformGroup.controls.pricePerMonth.value;
+    pricing.provider = this.providerformGroup.controls.provider.value;
+
+    console.log(pricing);
     if (this.boolCreate) {
       this.createPricingConfirmation(pricing);
     } else {
@@ -115,26 +144,21 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
     form.reset();
   }
 
-  // tslint:disable-next-line:typedef
-  get f() {
-    return this.formGroup.controls;
-  }
-
   createPricingConfirmation(pricing: Pricing): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '200px',
       data: {
-          message: 'Confirm the creation of this new Pricing!?'
+        message: 'Confirm the creation of this new Pricing!?'
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.pricingService.setPricing(pricing).then( data => {
+        this.pricingService.setPricing(pricing).then(data => {
           console.log(data);
         })
-        .catch(e => {
-          console.log(e);
-        });
+          .catch(e => {
+            console.log(e);
+          });
         this.router.navigate(['']);
       }
     });
@@ -147,14 +171,14 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
         message: 'Confirm to drop this pricing ?'
       },
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.pricingService.deletePricing(provider, category).then( data => {
+        this.pricingService.deletePricing(provider, category).then(data => {
           console.log(data);
         })
-        .catch( e => {
-          console.log(e);
-        });
+          .catch(e => {
+            console.log(e);
+          });
         this.router.navigate(['']);
       }
     });
@@ -167,14 +191,14 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
         message: 'Confirm tu update this criterion !'
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.pricingService.updatePricing(pricing).then( data => {
+        this.pricingService.updatePricing(pricing).then(data => {
           console.log(data);
         })
-        .catch(e => {
-          console.log(e);
-        });
+          .catch(e => {
+            console.log(e);
+          });
         this.router.navigate(['']);
       }
     });

@@ -2,7 +2,7 @@
   <div class="example-button-row">
     <div class="example-flex-container">
       <div class="example-button-container-bis">
-        <h2> {{ pageTitle }}</h2>
+        
       </div>
     </div>
   </div>
@@ -11,15 +11,11 @@
 <mat-divider></mat-divider>
 
 <section>
-  <div  class="test1">
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
     </mat-form-field>
-    <!--<button mat-mini-fab color="primary" (click)="providerHandler(null)">
-      <mat-icon >add</mat-icon>
-    </button>-->
-  </div>
+    <h2 align="center"> {{ pageTitle }}</h2>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- Name Column -->
@@ -220,9 +216,5 @@
     </div>
   </mat-expansion-panel>
 
-</section>
-
-<section>
-  <app-attributs></app-attributs>
 </section>
 <mat-divider></mat-divider>

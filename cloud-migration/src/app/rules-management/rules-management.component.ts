@@ -26,6 +26,12 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   formTitle: string | undefined;
   types!: string[];
 
+  nameformGroup!: FormGroup;
+  criticityformGroup!: FormGroup;
+  complexityformGroup!: FormGroup;
+  availabilityformGroup!: FormGroup;
+  typeformGroup!: FormGroup;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -46,34 +52,49 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllrules();
     this.newRuleForm();
+    this.pageTitle = 'Regles'
     this.types = ['big data', 'web', 'mobile', 'default'];
   }
 
   getAllrules(): void {
-    this.ruleService.getRules().then( data => {
+    this.ruleService.getRules().then(data => {
       this.dataSource.data = data.rulesappcloudready;
     });
   }
 
   applyFilter(event: Event): void {
-    const filterValue = ( event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if ( this.dataSource.paginator) {
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
   newRuleForm(): void {
     this.formTitle = 'Add new Rule ';
-    this.formGroup = this.formBuilder.group({
-       name: ['', Validators.required],
-       criticity: ['', [Validators.required, Validators.max, Validators.min]],
-       complexity: ['', [Validators.required, Validators.max, Validators.min]],
-       availability: ['', [Validators.required, Validators.max, Validators.min]],
-       type: ['', [Validators.required]]
-     });
-   }
+
+    this.nameformGroup = this.formBuilder.group({
+      name: ['', [Validators.required]]
+    })
+
+    this.criticityformGroup = this.formBuilder.group({
+      criticity: ['', [Validators.required, Validators.max, Validators.min]]
+    })
+
+    this.complexityformGroup = this.formBuilder.group({
+      complexity: ['', [Validators.required, Validators.max, Validators.min]]
+    })
+
+    this.availabilityformGroup = this.formBuilder.group({
+      availability: ['', [Validators.required, Validators.min, Validators.max]]
+    })
+
+    this.typeformGroup = this.formBuilder.group({
+      type: ['', [Validators.required]]
+    })
+
+  }
 
   reset(form: FormGroup): void {
     form.reset();
@@ -81,20 +102,20 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
 
 
   // tslint:disable-next-line:typedef
-  get f() {
-    return this.formGroup.controls;
+  getValue(formGroup: FormGroup) {
+    return formGroup.controls;
   }
 
+
   submit(): void {
-    if (this.formGroup.invalid) {
-      return;
-    }
+    
     const rule = new Rule();
-    rule.name = this.f.name.value;
-    rule.criticity = this.f.criticity.value;
-    rule.complexity = this.f.complexity.value;
-    rule.availability = this.f.availability.value;
-    rule.type = this.f.type.value;
+    rule.name = this.getValue(this.nameformGroup).name.value;
+    rule.criticity = this.getValue(this.criticityformGroup).criticity.value;
+    rule.complexity = this.getValue(this.complexityformGroup).complexity.value;
+    rule.availability = this.getValue(this.availabilityformGroup).availability.value;
+    rule.type = this.getValue(this.typeformGroup).type.value;
+    console.log(rule)
     if (this.boolCreate) {
       this.createRuleConfirmation(rule);
     }
@@ -108,17 +129,17 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '200px',
       data: {
-          message: 'Confirm the creation of this new Rule !?'
+        message: 'Confirm the creation of this new Rule !?'
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.ruleService.setRule(rule).then( data => {
+        this.ruleService.setRule(rule).then(data => {
           console.log(data);
         })
-        .catch(e => {
-          console.log(e);
-        });
+          .catch(e => {
+            console.log(e);
+          });
         this.router.navigate(['']);
       }
     });
@@ -131,14 +152,14 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
         message: 'Confirm to drop this criterion ?'
       },
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.ruleService.deleteRule(name).then( data => {
+        this.ruleService.deleteRule(name).then(data => {
           console.log(data);
         })
-        .catch( e => {
-          console.log(e);
-        });
+          .catch(e => {
+            console.log(e);
+          });
         this.router.navigate(['']);
       }
     });
@@ -151,14 +172,14 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
         message: 'Confirm tu update this Rule!'
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.ruleService.updateRule(rule).then( data => {
+        this.ruleService.updateRule(rule).then(data => {
           console.log(data);
         })
-        .catch(e => {
-          console.log(e);
-        });
+          .catch(e => {
+            console.log(e);
+          });
         this.router.navigate(['']);
       }
     });
@@ -167,11 +188,11 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   edit(row: any): void {
     this.panelOpenState = true;
     this.formTitle = 'Update Rule ' + row.name;
-    this.f.name.setValue(row.name);
-    this.f.criticity.setValue(row.criticity);
-    this.f.complexity.setValue(row.complexity);
-    this.f.availability.setValue(row.availability);
-    this.f.type.setValue(row.type);
+    this.getValue(this.nameformGroup).name.setValue(row.name);
+    this.getValue(this.criticityformGroup).criticity.setValue(row.criticity);
+    this.getValue(this.complexityformGroup).complexity.setValue(row.complexity);
+    this.getValue(this.availabilityformGroup).availability.setValue(row.availability);
+    this.getValue(this.typeformGroup).type.setValue(row.type);
     this.status = true;
     this.boolCreate = false;
   }

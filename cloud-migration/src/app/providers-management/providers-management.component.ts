@@ -55,6 +55,7 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.pageTitle = 'Providers'
     this.getAllProvider();
     this.newProviderForm();
     this.sharedNames();
@@ -130,7 +131,6 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
     return formGroup.controls;
   }
 
-  // tslint:disable-next-line:typedef
   submit(): void {
     const provider = new Provider();
     provider.name = this.getValue(this.nameformGroup).name.value;

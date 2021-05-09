@@ -1,12 +1,12 @@
-import { group } from '@angular/animations';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProviderAttribut } from 'src/app/class/provider-attribut';
+import { AttributDialogComponent } from 'src/app/dialog/attribut-dialog/attribut-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/dialog/confirmation-dialog/confirmation-dialog.component';
 import { ProviderAttributsService } from 'src/app/services/provider-attributs.service';
 import { SharedService } from 'src/app/services/shared.service';
@@ -51,6 +51,7 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllAttributs();
     this.newAttributForm();
+    this.pageTitle = 'Attributes'
     this.sharedService.currentData.subscribe( data => {
       console.log('data from attributs ', data);
     });
@@ -111,9 +112,9 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   edit(row: ProviderAttribut): void {
     this.panelOpenState = true;
     this.formTitle = `Update Provider Attribut ${row.name}`;
-    this.f.name.setValue(row.name);
-    this.f.behavior.setValue(row.behavior);
-    this.f.weight.setValue(row.weight);
+    this.nameformGroup.controls.name.setValue(row.name);
+    this.typeformGroup.controls.behavior.setValue(row.behavior);
+    this.ponderationformGroup.controls.weight.setValue(row.weight);
     this.status = true;
     this.boolCreate = false;
   }
@@ -123,19 +124,12 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   }
 
   submit(): void {
-    if (this.formGroup.invalid) {
-      return;
-    }
+
     const attribut = new ProviderAttribut();
-    attribut.name = this.f.name.value;
-    attribut.behavior = this.f.behavior.value;
-    attribut.weight = this.f.weight.value;
-    if (this.boolCreate) {
-      this.createAttributConfirmation(attribut);
-    }
-    else {
-      this.updateAttributConfirmation(attribut);
-    }
+    attribut.name = this.getValue(this.nameformGroup).name.value;
+    attribut.behavior = this.getValue(this.typeformGroup).behavior.value;
+    attribut.weight = this.getValue(this.ponderationformGroup).weight.value;
+    this.showAttribut(attribut);
   }
 
   back(): void {
@@ -200,6 +194,25 @@ export class AttributsComponent implements OnInit, AfterViewInit {
           console.log(e);
         });
         this.router.navigate(['']);
+      }
+    });
+  }
+
+  showAttribut(row: ProviderAttribut): void {
+    const dialogRef = this.dialog.open(AttributDialogComponent, {
+      width: '300px',
+      maxHeight: '570px',
+      data:{
+        row
+      }
+    });
+    dialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        if(this.boolCreate) {
+          this.createAttributConfirmation(row);
+        } else {
+          this.updateAttributConfirmation(row);
+        }
       }
     });
   }

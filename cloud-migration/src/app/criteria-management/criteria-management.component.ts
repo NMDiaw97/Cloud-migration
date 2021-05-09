@@ -44,7 +44,7 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.pageTitle = 'Criteria Management';
+    this.pageTitle = 'Criteria';
     this.getAllCriteria();
     this.newCriteriaForm();
   }
