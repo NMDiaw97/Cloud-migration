@@ -20,6 +20,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
   panelOpenState = false;
   pageTitle = '';
   formTitle = '';
+  spinner = false;
   displayedColumns = ['category', 'cpu', 'ram', 'pricePerHour', 'pricePerMonth', 'provider', 'action'];
   dataSource = new MatTableDataSource<Pricing>();
 
@@ -97,7 +98,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
       provider: ['', [Validators.required]]
     })
 
-   
+    this.status = false;
   }
 
   edit(row: Pricing): void {
@@ -117,8 +118,8 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
     this.deletePricingConfirmation(provider, category);
   }
 
-   // tslint:disable-next-line:typedef
-   getValue(formGroup: FormGroup) {
+  // tslint:disable-next-line:typedef
+  getValue(formGroup: FormGroup) {
     return formGroup.controls;
   }
 
@@ -130,8 +131,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
     pricing.pricePerHour = this.pricePerHourformGroup.controls.pricePerHour.value;
     pricing.pricePerMonth = this.pricePerMonthformGroup.controls.pricePerMonth.value;
     pricing.provider = this.providerformGroup.controls.provider.value;
-
-    console.log(pricing);
+    this.panelOpenState = false;
     if (this.boolCreate) {
       this.createPricingConfirmation(pricing);
     } else {
@@ -140,6 +140,22 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
     }
   }
 
+  resolveAfter2Seconds(x: unknown) {
+    this.spinner = true
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 3000);
+    });
+  }
+  async reload() {
+    const val = <number>await this.resolveAfter2Seconds(20);
+    if (val) {
+      //window.location.reload()
+      this.spinner = false;
+      this.ngOnInit()
+    }
+  }
   reset(form: FormGroup): void {
     form.reset();
   }
@@ -159,7 +175,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }
@@ -179,7 +195,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }
@@ -199,7 +215,7 @@ export class PricingManagementComponent implements OnInit, AfterViewInit {
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }

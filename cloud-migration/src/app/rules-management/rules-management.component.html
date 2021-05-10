@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!spinner">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
@@ -66,9 +66,9 @@
   </div>
 </section>
 
-<mat-divider></mat-divider>
+<mat-divider *ngIf="!spinner"></mat-divider>
 
-<section>
+<section *ngIf="!spinner">
   <mat-expansion-panel [expanded]="panelOpenState">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -159,3 +159,6 @@
 
 </section>
 <mat-divider></mat-divider>
+<div class="loader" align="center" *ngIf="spinner">
+  <mat-spinner color="warn"></mat-spinner>
+</div>

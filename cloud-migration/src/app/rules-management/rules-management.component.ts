@@ -22,6 +22,7 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
   boolCreate = true;
   panelOpenState = false;
   status = false;
+  spinner = false;
   pageTitle: string | undefined;
   formTitle: string | undefined;
   types!: string[];
@@ -108,7 +109,7 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
 
 
   submit(): void {
-    
+
     const rule = new Rule();
     rule.name = this.getValue(this.nameformGroup).name.value;
     rule.criticity = this.getValue(this.criticityformGroup).criticity.value;
@@ -125,6 +126,22 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
     }
   }
 
+  resolveAfter2Seconds(x: unknown) {
+    this.spinner = true
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 3000);
+    });
+  }
+  async reload() {
+    const val = <number>await this.resolveAfter2Seconds(20);
+    if (val) {
+      //window.location.reload()
+      this.spinner = false;
+      this.ngOnInit()
+    }
+  }
   createRuleConfirmation(rule: Rule): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '200px',
@@ -136,11 +153,12 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
       if (result) {
         this.ruleService.setRule(rule).then(data => {
           console.log(data);
+
         })
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }
@@ -156,11 +174,12 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
       if (result) {
         this.ruleService.deleteRule(name).then(data => {
           console.log(data);
+
         })
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }
@@ -176,12 +195,14 @@ export class RulesManagementComponent implements OnInit, AfterViewInit {
       if (result) {
         this.ruleService.updateRule(rule).then(data => {
           console.log(data);
+
         })
           .catch(e => {
             console.log(e);
           });
         this.router.navigate(['']);
       }
+      this.reload().then()
     });
   }
 

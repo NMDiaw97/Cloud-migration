@@ -1,7 +1,6 @@
-.section1 {
-  display: table;
+.section{
+  margin-top: 60px;
 }
-
 section{
   margin: 20px;
 }
@@ -147,4 +146,8 @@ mat-slider {
   font-size: 14px;
   width: 320px;
   padding: 20px;
+}
+
+.loader{
+  margin-top: 160px;
 }

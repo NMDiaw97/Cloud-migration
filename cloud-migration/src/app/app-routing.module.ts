@@ -11,6 +11,7 @@ import { ProvidersManagementComponent } from './providers-management/providers-m
 import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { AppComponent } from './app.component';
 // import { CriteriaComponent } from './criteria-management/criteria/criteria.component';
 const routes: Routes = [
 
@@ -41,7 +42,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: SidebarComponent,
+    component: AppComponent,
+    runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard]
   },
   {
@@ -71,7 +73,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

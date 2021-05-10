@@ -49,6 +49,7 @@ import {ProviderDialogComponent } from './dialog/provider-dialog/provider-dialog
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AttributDialogComponent } from './dialog/attribut-dialog/attribut-dialog.component';
 import { HomeComponent } from './home/home.component';
+import { ProjectsComponent } from './projects/projects.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +72,8 @@ import { HomeComponent } from './home/home.component';
     UserManagementComponent,
     ProviderDialogComponent,
     AttributDialogComponent,
-    HomeComponent
+    HomeComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

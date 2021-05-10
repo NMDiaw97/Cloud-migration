@@ -20,7 +20,7 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
   displayedColumns = ['name', 'reliability', 'flexibility', 'maturity', 'dataSecurity', 'geoDispatching', 'price', 'action'];
   pageTitle: string | undefined;
   formTitle: string | undefined;
-
+  spinner = false;
   value = 0;
   nameformGroup!: FormGroup;
   relaibilityformGroup!: FormGroup;
@@ -142,6 +142,22 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
     provider.price = this.getValue(this.priceformGroup).price.value;
     this.showProvider(provider);
   }
+  resolveAfter2Seconds(x: unknown) {
+    this.spinner = true
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 3000);
+    });
+  }
+  async reload() {
+    const val = <number>await this.resolveAfter2Seconds(20);
+    if (val) {
+      //window.location.reload()
+      this.spinner = false;
+      this.ngOnInit()
+    }
+  }
 
   createProviderConfirmation(provider: Provider): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -154,11 +170,12 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
       if (result) {
         this.providersService.setProvider(provider).then(data => {
           console.log(data);
+
         })
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }
@@ -174,11 +191,12 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
       if (result) {
         this.providersService.updateProvider(provider).then(data => {
           console.log(data);
+
         })
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }
@@ -199,7 +217,7 @@ export class ProvidersManagementComponent implements OnInit, AfterViewInit {
           .catch(e => {
             console.log(e);
           });
-        this.router.navigate(['']);
+        this.reload().then()
       }
     });
   }

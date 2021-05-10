@@ -29,6 +29,7 @@ export class AttributsComponent implements OnInit, AfterViewInit {
   boolCreate = true;
   panelOpenState = false;
   status = false;
+  spinner = false;
   types!: string[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -52,24 +53,24 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     this.getAllAttributs();
     this.newAttributForm();
     this.pageTitle = 'Attributes'
-    this.sharedService.currentData.subscribe( data => {
+    this.sharedService.currentData.subscribe(data => {
       console.log('data from attributs ', data);
     });
     this.types = ['benefit', 'cost'];
   }
 
   getAllAttributs(): void {
-    this.attributsService.getAttributes().then( data => {
+    this.attributsService.getAttributes().then(data => {
       this.dataSource.data = data.criteria;
       console.log(data);
     });
   }
 
   applyFilter(event: Event): void {
-    const filterValue = ( event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if ( this.dataSource.paginator) {
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
@@ -83,9 +84,9 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     });
 
     this.nameformGroup = this.formBuilder.group({
-      name: ['',  Validators.required]
+      name: ['', Validators.required]
     });
-    
+
     this.typeformGroup = this.formBuilder.group({
       behavior: ['', [Validators.required]],
     })
@@ -130,8 +131,25 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     attribut.behavior = this.getValue(this.typeformGroup).behavior.value;
     attribut.weight = this.getValue(this.ponderationformGroup).weight.value;
     this.showAttribut(attribut);
+    this.panelOpenState = false;
   }
 
+  resolveAfter2Seconds(x: unknown) {
+    this.spinner = true
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 3000);
+    });
+  }
+  async reload() {
+    const val = <number>await this.resolveAfter2Seconds(20);
+    if (val) {
+      //window.location.reload()
+      this.spinner = false;
+      this.ngOnInit()
+    }
+  }
   back(): void {
     this.newAttributForm();
     this.boolCreate = true;
@@ -142,18 +160,18 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '200px',
       data: {
-          message: 'Confirm the creation of this new Provider Attribut !?'
+        message: 'Confirm the creation of this new Provider Attribut !?'
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.attributsService.setAttribut(attribut).then( data => {
+        this.attributsService.setAttribut(attribut).then(data => {
           console.log(data);
         })
-        .catch(e => {
-          console.log(e);
-        });
-        this.router.navigate(['']);
+          .catch(e => {
+            console.log(e);
+          });
+          this.reload().then()
       }
     });
   }
@@ -165,15 +183,15 @@ export class AttributsComponent implements OnInit, AfterViewInit {
         message: 'Confirm tu update this Provider!'
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.attributsService.updateAttribut(attribut).then( data => {
+        this.attributsService.updateAttribut(attribut).then(data => {
           console.log(data);
         })
-        .catch(e => {
-          console.log(e);
-        });
-        this.router.navigate(['']);
+          .catch(e => {
+            console.log(e);
+          });
+          this.reload().then()
       }
     });
   }
@@ -185,15 +203,15 @@ export class AttributsComponent implements OnInit, AfterViewInit {
         message: 'Confirm to drop this provider?'
       },
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.attributsService.deleteAttribut(name).then( (data) => {
+        this.attributsService.deleteAttribut(name).then((data) => {
           console.log(data);
         })
-        .catch( e => {
-          console.log(e);
-        });
-        this.router.navigate(['']);
+          .catch(e => {
+            console.log(e);
+          });
+          this.reload().then()
       }
     });
   }
@@ -202,13 +220,13 @@ export class AttributsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(AttributDialogComponent, {
       width: '300px',
       maxHeight: '570px',
-      data:{
+      data: {
         row
       }
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if(this.boolCreate) {
+        if (this.boolCreate) {
           this.createAttributConfirmation(row);
         } else {
           this.updateAttributConfirmation(row);

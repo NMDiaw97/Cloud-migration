@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!spinner">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
@@ -76,8 +76,8 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>
-<mat-divider></mat-divider>
-<section>
+<mat-divider *ngIf="!spinner"></mat-divider>
+<section *ngIf="!spinner">
   <mat-expansion-panel [expanded]="panelOpenState">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -183,3 +183,6 @@
   </mat-expansion-panel>
 </section>
 <mat-divider></mat-divider>
+<div class="loader" align="center" *ngIf="spinner">
+  <mat-spinner color="warn"></mat-spinner>
+</div>
