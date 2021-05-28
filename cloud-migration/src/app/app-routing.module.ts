@@ -7,6 +7,8 @@ import { RulesManagementComponent } from './rules-management/rules-management.co
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './security/auth.guard';
+import { ProjectComponent } from './project-management/project/project.component';
+import { AddCloudCriteriaComponent } from './add-cloud-criteria/add-cloud-criteria.component';
 const routes: Routes = [
 
   {
@@ -21,7 +23,7 @@ const routes: Routes = [
   {
     path: 'criteria-management',
     component: CriteriaManagementComponent,
-    canActivate: [AuthGuard]
+    
   },
   {
     path: '',
@@ -39,7 +41,13 @@ const routes: Routes = [
   {
     path: 'rules-management',
     component: RulesManagementComponent
+  },
+  {
+    path: 'project',
+    component: ProjectComponent
   }
+  
+
 
 ];
 

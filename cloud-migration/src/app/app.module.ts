@@ -36,6 +36,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProjectComponent } from './project-management/project/project.component';
+import { AddCloudCriteriaComponent } from './add-cloud-criteria/add-cloud-criteria.component';
+import { ConfirmDialogComponent } from './project-management/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PricingManagementComponent,
     RulesManagementComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectComponent,
+    AddCloudCriteriaComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

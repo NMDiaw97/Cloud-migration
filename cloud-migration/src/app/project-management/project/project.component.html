@@ -1,0 +1,228 @@
+<section class="section1">
+  <div class="example-button-row">
+    <div class="example-flex-container">
+      <div class="example-button-container-bis">
+        <h2> {{ pageTitle }}</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<mat-divider></mat-divider>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="project_name">
+      <th mat-header-cell *matHeaderCellDef> Nom du projet </th>
+      <td mat-cell *matCellDef="let data"> {{data.project_name}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="application_type">
+      <th mat-header-cell *matHeaderCellDef> type d'application</th>
+      <td mat-cell *matCellDef="let data"> {{data.application_type}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="dependencies">
+      <th mat-header-cell *matHeaderCellDef> dependances</th>
+      <td mat-cell *matCellDef="let data"> {{data.dependencies}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="sla">
+      <th mat-header-cell *matHeaderCellDef> SLA </th>
+      <td mat-cell *matCellDef="let data"> {{data.sla}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="environment">
+      <th mat-header-cell *matHeaderCellDef> environment </th>
+      <td mat-cell *matCellDef="let data"> {{data.environment}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="data_size">
+      <th mat-header-cell *matHeaderCellDef> Taille des donnees </th>
+      <td mat-cell *matCellDef="let data"> {{data.data_size}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="connected_applications">
+      <th mat-header-cell *matHeaderCellDef> Applications connectees </th>
+      <td mat-cell *matCellDef="let data"> {{data.connected_applications}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="tech_requirements">
+      <th mat-header-cell *matHeaderCellDef> Prérequis techniques</th>
+      <td mat-cell *matCellDef="let data"> {{data.tech_requirements}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="cost_estimation">
+      <th mat-header-cell *matHeaderCellDef> Estimation du cout </th>
+      <td mat-cell *matCellDef="let data"> {{data.cost_estimation}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="cpu">
+      <th mat-header-cell *matHeaderCellDef> CPU </th>
+      <td mat-cell *matCellDef="let data"> {{data.cpu}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="disk">
+      <th mat-header-cell *matHeaderCellDef> Disque </th>
+      <td mat-cell *matCellDef="let data"> {{data.disk}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="memory">
+      <th mat-header-cell *matHeaderCellDef> Memoire </th>
+      <td mat-cell *matCellDef="let data"> {{data.memory}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="number_of_vm">
+      <th mat-header-cell *matHeaderCellDef> Nombre de Vm </th>
+      <td mat-cell *matCellDef="let data"> {{data.number_of_vm}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="os_image">
+      <th mat-header-cell *matHeaderCellDef> Image os </th>
+      <td mat-cell *matCellDef="let data"> {{data.os_image}} </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+     <ng-container matColumnDef="os_type">
+      <th mat-header-cell *matHeaderCellDef> Type de os </th>
+      <td mat-cell *matCellDef="let data"> {{data.os_type}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> actions</th>
+      <td mat-cell *matCellDef="let data"> 
+        <button mat-mini-fab color="link" ><mat-icon (click)=" edit(data)">edit</mat-icon></button>
+        <button mat-mini-fab color="warn" (click)="delete(data.project_name)"><mat-icon>delete</mat-icon></button>
+        
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+
+<mat-divider></mat-divider>
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel [expanded]="panelOpenState">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{formTitle}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Remplir les exigences du projet
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="main-div" fxFlexFill>
+      <form action=""[formGroup]="formGroup" fxLayoutAlign="stretch" fxLayout="column">
+          <mat-form-field>
+              <mat-label>Nom de l'application</mat-label>
+              <input matInput formControlName="project_name">
+            </mat-form-field>
+          <mat-form-field>
+              <mat-label>Type d'application</mat-label>
+              <input matInput formControlName="application_type">
+            </mat-form-field>
+        
+            <mat-form-field>
+              <mat-label>dependances</mat-label>
+              <input matInput type="text" formControlName="dependencies" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>sla</mat-label>
+              <input matInput type="number"formControlName="sla" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>environnement</mat-label>
+              <input matInput type="text" formControlName="environment" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>taille des données</mat-label>
+              <input matInput type="number" formControlName="data_size" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>applications connectées</mat-label>
+              <input matInput type="number" formControlName="connected_applications" required >
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>prérequis techniques</mat-label>
+              <input matInput type="text" formControlName="tech_requirements" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>estimation du cout</mat-label>
+              <input matInput type="number" formControlName="cost_estimation" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>cpu</mat-label>
+              <input matInput type="number" formControlName="cpu" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>disque</mat-label>
+              <input matInput type="number" formControlName="disk" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>memoire</mat-label>
+              <input matInput type="number" formControlName="memory" required>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>nombre de vm</mat-label>
+              <input matInput type="number" formControlName="number_of_vm" required>
+            </mat-form-field>
+  
+  
+            <mat-form-field>
+              <mat-label>image os</mat-label>
+              <input matInput type="text" formControlName="os_image" required>
+            </mat-form-field>
+  
+  
+            <mat-form-field>
+              <mat-label>type de os</mat-label>
+              <input matInput type="text" formControlName="os_type" required>
+            </mat-form-field>
+            <mat-card-actions class="actions">
+              <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+              <button mat-raised-button color="warn" (click)="reset(formGroup)">Reset</button>
+          </mat-card-actions>
+  
+        </form>
+        
+    </div>
+    
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+  

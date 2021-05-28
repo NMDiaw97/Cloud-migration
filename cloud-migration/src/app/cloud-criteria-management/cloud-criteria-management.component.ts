@@ -6,7 +6,6 @@ import { CloudCriteriaService } from '../services/cloud-criteria.service';
 import { element } from 'protractor';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCloudCriteriaComponent } from '../add-cloud-criteria/add-cloud-criteria.component';
 import { AddProviderDialogService } from '../services/add-provider-dialog.service';
 import { ConfirmDeleteProviderService } from '../services/confirm-delete-provider.service';
