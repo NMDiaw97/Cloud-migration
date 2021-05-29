@@ -21,14 +21,14 @@ export class RulesService {
   }
 
   setRule(data: Rule): Promise<Rule> {
-    return this.http.post<Rule>(`${this.apiUrl}/ruleappcloudready`, data).toPromise();
+    return this.http.post<Rule>(`${this.apiUrl}/rulesappcloudready`, data).toPromise();
   }
 
   updateRule(rule: any): Promise<any> {
-    return this.http.put<any>(`${this.apiUrl}/ruleappcloudready/${rule.name}`, rule).toPromise();
+    return this.http.put<any>(`${this.apiUrl}/rulesappcloudready/${rule.name}`, rule).toPromise();
   }
 
   deleteRule(ruleName: string): Promise<string> {
-    return this.http.delete<string>(`${this.apiUrl}/ruleappcloudready/${ruleName}`).toPromise();
+    return this.http.delete<string>(`${this.apiUrl}/rulesappcloudready/${ruleName}`).toPromise();
   }
 }

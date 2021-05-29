@@ -1,0 +1,26 @@
+<ul class="list-group list-group-flush">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Attribut Name
+      <strong>{{attribut.name}}</strong>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Attribut Type
+        <strong>{{attribut.behavior}}</strong>
+      </li>
+  
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Ponderation
+      <mat-progress-spinner mode="determinate" [strokeWidth]="2" [diameter]="47" [value]="attribut.weight">
+      </mat-progress-spinner>
+      <div class="message">{{attribut.weight}}</div>
+    </li>
+  </ul>
+  <mat-dialog-actions align="center">
+    <button mat-mini-fab color="warn" mat-dialog-close>
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" [mat-dialog-close]="true" cdkFocusInitial>
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-dialog-actions>

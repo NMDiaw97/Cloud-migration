@@ -1,19 +1,9 @@
-<section class="section1">
-  <div class="example-button-row">
-    <div class="example-flex-container">
-      <div class="example-button-container-bis">
-        <h2> {{ pageTitle }}</h2>
-      </div>
-    </div>
-  </div>
-</section>
-<mat-divider></mat-divider>
-<section>
+<section *ngIf="!spinner">
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input  matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Me" #input>
   </mat-form-field>
-
+  <h2 align="center"> {{ pageTitle }}</h2>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- Name Column -->
@@ -37,13 +27,18 @@
       <!-- Moderate RateColumn -->
       <ng-container matColumnDef="pricePerHour">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Price Per Hour </th>
-        <td mat-cell *matCellDef="let row"> {{row.pricePerHour}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.pricePerHour}}
+          <span matPrefix>Fcfa&nbsp;</span>
+        </td>
       </ng-container>
 
       <!--Hight Rate Column -->
       <ng-container matColumnDef="pricePerMonth">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> price Per Month </th>
-        <td mat-cell *matCellDef="let row"> {{row.pricePerMonth}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.pricePerMonth}}
+          <span matPrefix>Fcfa&nbsp;</span>
+        </td>
+
       </ng-container>
 
       <!-- Very High Rate Column -->
@@ -57,11 +52,15 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
         <td mat-cell *matCellDef="let row">
-          <button mat-mini-fab color="link" ><mat-icon (click)=" edit(row)">edit</mat-icon></button>
+          <button mat-mini-fab color="link">
+            <mat-icon (click)=" edit(row)">edit</mat-icon>
+          </button>
           <!--
           <button mat-mini-fab color="primary" (click)="detail(row)"><mat-icon>visibility</mat-icon></button>
           -->
-          <button mat-mini-fab color="warn" (click)="delete(row.provider, row.category)"><mat-icon>delete</mat-icon></button>
+          <button mat-mini-fab color="warn" (click)="delete(row.provider, row.category)">
+            <mat-icon>delete</mat-icon>
+          </button>
 
         </td>
       </ng-container>
@@ -77,9 +76,9 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </section>
-<mat-divider></mat-divider>
-<section>
-<mat-expansion-panel [expanded]="panelOpenState">
+<mat-divider *ngIf="!spinner"></mat-divider>
+<section *ngIf="!spinner">
+  <mat-expansion-panel [expanded]="panelOpenState">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{formTitle}}
@@ -87,36 +86,103 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-        <form [formGroup]="formGroup" class="field">
+    <mat-vertical-stepper linear="true" #stepper>
+      <mat-step [stepControl]="categoryformGroup">
+        <form [formGroup]="categoryformGroup">
+          <ng-template matStepLabel>Fill out Category</ng-template>
           <mat-form-field>
             <mat-label>Category</mat-label>
-            <input matInput placeholder="Category" formControlName="category" required [readonly]="status"/>
+            <input matInput placeholder="Category" formControlName="category" required [readonly]="status">
           </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="cpuformGroup">
+        <form [formGroup]="cpuformGroup">
+          <ng-template matStepLabel>Fill out Cpu</ng-template>
           <mat-form-field>
-            <mat-label>CPU</mat-label>
-            <input matInput placeholder="cpu" type="number" formControlName="cpu" required min="1" max="100"/>
+            <mat-label>Cpu</mat-label>
+            <input matInput placeholder="Cpu" formControlName="cpu" required max="100" min="0" type="number">
           </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step [stepControl]="ramformGroup">
+        <form [formGroup]="ramformGroup">
+          <ng-template matStepLabel>Fill out Ram</ng-template>
           <mat-form-field>
-            <mat-label>RAM</mat-label>
-            <input matInput placeholder="ram" type="number" formControlName="ram" required min="1" max="100"/>
+            <mat-label>Ram</mat-label>
+            <input matInput placeholder="Ram" formControlName="ram" required max="100" min="0" type="number">
           </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="pricePerHourformGroup">
+        <form [formGroup]="pricePerHourformGroup">
+          <ng-template matStepLabel>Fill out Price Per Hour</ng-template>
           <mat-form-field>
             <mat-label>Price Per Hour</mat-label>
-            <input matInput placeholder="price per hour" type="number" formControlName="pricePerHour" required/>
+            <input matInput placeholder="Price Per Hour" formControlName="pricePerHour" required max="100" min="0"
+              type="number">
           </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="pricePerMonthformGroup">
+        <form [formGroup]="pricePerMonthformGroup">
+          <ng-template matStepLabel>Fill out Price Per Month</ng-template>
           <mat-form-field>
             <mat-label>Price Per Month</mat-label>
-            <input matInput placeholder="price per month" type="number" formControlName="pricePerMonth" required />
+            <input matInput placeholder="Price Per Hour" formControlName="pricePerMonth" required max="100" min="0"
+              type="number">
           </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="providerformGroup">
+        <form [formGroup]="providerformGroup">
+          <ng-template matStepLabel>Fill out Provider</ng-template>
           <mat-form-field>
             <mat-label>Provider</mat-label>
-            <input matInput placeholder="provider" type="text" formControlName="provider" required [readonly]="status"/>
+            <input matInput placeholder="Provider" formControlName="provider" required>
           </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
         </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
         <div>
-          <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-          <button mat-raised-button *ngIf="boolCreate" color="warn" (click)="reset(formGroup)">Reset</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
+      </mat-step>
+    </mat-vertical-stepper>
+    <div>
+      <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    </div>
   </mat-expansion-panel>
 </section>
 <mat-divider></mat-divider>
+<div class="loader" align="center" *ngIf="spinner">
+  <mat-spinner color="warn"></mat-spinner>
+</div>

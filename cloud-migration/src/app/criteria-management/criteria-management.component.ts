@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../dialog/confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-criteria-management',
@@ -44,7 +44,7 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.pageTitle = 'Criteria Management';
+    this.pageTitle = 'Criteria';
     this.getAllCriteria();
     this.newCriteriaForm();
   }
@@ -128,6 +128,12 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
 
   }
 
+  back(): void {
+    this.newCriteriaForm();
+    this.boolCreate = true;
+    this.panelOpenState = false;
+  }
+
   reset(form: FormGroup): void {
     form.reset();
   }
@@ -181,7 +187,7 @@ export class CriteriaManagementComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '200px',
       data: {
-        message: 'Confirm tu update this criterion !'
+        message: 'Confirm to update this criterion !'
       }
     });
     dialogRef.afterClosed().subscribe( result => {

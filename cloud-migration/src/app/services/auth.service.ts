@@ -19,14 +19,18 @@ export class AuthService {
   ) { }
 
   registerUser(user: User): Promise<User> {
-    return this.http.post<User>(`${this.apiUrl}/register`, user).toPromise();
+    return this.http.post<User>(`${this.apiUrl}/register`, user, {headers: {skip: 'true'}}).toPromise();
   }
 
   loginUser(user: User): Promise<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, user).toPromise();
+    return this.http.post<any>(`${this.apiUrl}/login`, user, {headers: {skip: 'true'}}).toPromise();
   }
 
   loggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
+
+logOut(): void{
+  return localStorage.clear();
+ }
 }

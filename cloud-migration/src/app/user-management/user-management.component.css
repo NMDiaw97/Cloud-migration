@@ -1,0 +1,102 @@
+section1 {
+  display: table;
+}
+
+section{
+  margin: 20px;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 10%;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 10px;
+}
+
+.example-button-container-bis {
+  display: flex;
+  justify-content: center;
+  width: 220px;
+}
+
+table {
+  width: 100%;
+  padding: 20px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding: 20px;
+}
+
+/*
+td, th {
+  width: 25%;
+}
+ */
+
+
+.add {
+  margin: 20px;
+}
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.header {
+  margin-top: 20px;
+  margin-left: 10px;
+  font-size: large;
+
+}
+
+.create{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.example-right-align {
+  text-align: center;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.field{
+  margin-right: 38px;
+}
+
+.green-icon {
+  color: green;
+}

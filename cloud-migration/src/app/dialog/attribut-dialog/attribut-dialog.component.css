@@ -1,0 +1,13 @@
+
+.mat-progress-spinner {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .message {
+    position: absolute;
+    text-align: right;
+    top: 50%;
+    left: 84%;
+    transform: translate(-84%, -50%);
+  }

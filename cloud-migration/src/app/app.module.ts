@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CriteriaManagementComponent } from './criteria-management/criteria-management.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -27,8 +27,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from './criteria-management/confirmation-dialog/confirmation-dialog.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { ConfirmationDialogComponent } from './dialog/confirmation-dialog/confirmation-dialog.component';
 import { DetailCriterionComponent } from './criteria-management/detail-criterion/detail-criterion.component';
 import { PricingManagementComponent } from './pricing-management/pricing-management.component';
 import { RulesManagementComponent } from './rules-management/rules-management.component';
@@ -39,6 +43,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProjectComponent } from './project-management/project/project.component';
 import { AddCloudCriteriaComponent } from './add-cloud-criteria/add-cloud-criteria.component';
 import { ConfirmDialogComponent } from './project-management/confirm-dialog/confirm-dialog.component';
+import { ProvidersManagementComponent } from './providers-management/providers-management.component';
+import { AttributsComponent } from './providers-management/attributs/attributs.component';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { ResetPasswordComponent } from './reset-password/reset-password/reset-password.component';
+import { RecoveryMailComponent } from './reset-password/recovery-mail/recovery-mail.component';
+import { AlertDialogComponent } from './dialog/alert-dialog/alert-dialog.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import {ProviderDialogComponent } from './dialog/provider-dialog/provider-dialog.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AttributDialogComponent } from './dialog/attribut-dialog/attribut-dialog.component';
+import { HomeComponent } from './home/home.component';
+import { ProjectsComponent } from './projects/projects.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +62,7 @@ import { ConfirmDialogComponent } from './project-management/confirm-dialog/conf
     DashboardComponent,
     SidebarComponent,
     ToolbarComponent,
-    CriteriaComponent,
+    // CriteriaComponent,
     ConfirmationDialogComponent,
     DetailCriterionComponent,
     PricingManagementComponent,
@@ -55,7 +71,17 @@ import { ConfirmDialogComponent } from './project-management/confirm-dialog/conf
     LoginComponent,
     ProjectComponent,
     AddCloudCriteriaComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ProvidersManagementComponent,
+    AttributsComponent,
+    ResetPasswordComponent,
+    RecoveryMailComponent,
+    AlertDialogComponent,
+    UserManagementComponent,
+    ProviderDialogComponent,
+    AttributDialogComponent,
+    HomeComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -77,12 +103,17 @@ import { ConfirmDialogComponent } from './project-management/confirm-dialog/conf
     MatPaginatorModule,
     MatSortModule,
     MatExpansionModule,
+    MatStepperModule,
     MatSliderModule,
     MatDialogModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [SidenavService, MatSidenav],
+  providers: [SidenavService, MatSidenav, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

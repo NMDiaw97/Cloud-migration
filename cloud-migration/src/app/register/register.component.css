@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .main-div mat-card{
   padding: 0px;
 }
@@ -6,4 +7,83 @@
 }
 .actions{
   padding: 0px;
+=======
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+  align-self:center;
+}
+
+h1 {
+  text-align: center;
+}
+
+mat-card-title {
+  margin-top: 50px;
+}
+mat-form-field {
+  display: block;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 45px;
+}
+
+mat-form-field-underline {
+  background-color: rgb(170, 170, 170);
+}
+
+mat-form-field-ripple {
+  background-color: rgb(19, 7, 7);
+}
+
+.container-fluid {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 600px;
+  height: 450px;
+  margin-top: 3%;
+  text-align: center;
+  align-items: center;
+
+  display:flexbox;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid #2bffdc;
+  height: 40px;
+  padding-left: 37px;
+  padding-right: 37px;
+  margin-top: 17px;
+  margin-bottom: 22px;
+  margin-left: 23px;
+  background-color: #2bffd1;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form{
+  padding-left: 60px;
+  padding-right: 60px;
+  border-radius: 20px;
+}
+
+.loader {
+  margin-top: 20%;
+}
+
+
+
+
+#test{  
+ /* background-image: url("../../assets/images/images.jpeg");  
+  background-size: 100% ;  
+  background-size: cover;  */
+  background: rgba(250, 250, 250, 0.596);
+>>>>>>> c3d30fa87cdc4c01c042fce44e45cbf63a253eeb
 }

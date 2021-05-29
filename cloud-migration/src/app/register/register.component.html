@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
   <mat-card class="register" fxFlex="25">
     <mat-card-content>
@@ -24,5 +25,36 @@
    
   </mat-card>
  
+=======
+<mat-card *ngIf="!spinner" class="container-fluid" style="text-align: center;">
+  <mat-card-content>
+    <form [formGroup]="formGroup" class="field">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" required  />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" type="email" formControlName="email" required/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="password" type="password" formControlName="password" required/>
+      </mat-form-field>
+    </form>
+      <button mat-raised-button color="primary" (click)="submit()">Registre</button>
+      <button mat-raised-button color="warn" (click)="reset(formGroup)">Reset</button>
+  </mat-card-content>
+  <mat-card-footer>
+    <h4>Already have an account  ? &nbsp;
+    <a [routerLink]="'/login'">
+        Sign In
+      </a></h4>
+  </mat-card-footer>
+</mat-card>
+<div class="loader" align="center" *ngIf="spinner">
+  <mat-spinner color="warn"></mat-spinner>
+>>>>>>> c3d30fa87cdc4c01c042fce44e45cbf63a253eeb
 </div>
 
